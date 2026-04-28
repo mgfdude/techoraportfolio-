@@ -554,6 +554,33 @@ span {
     gap: 30px;
 }
 
+.btn-card {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--primary-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: 1px solid var(--primary);
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: var(--transition);
+}
+
+.btn-card:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 40px 30px;
+    transition: var(--transition);
+}
+
 .project-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
@@ -1147,5 +1174,122 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
 
     .hero-buttons .btn {
         width: 100%;
+    }
+}
+
+/* ===== SUB-PAGES & SEO COMPONENTS ===== */
+.sub-hero {
+    padding: 150px 5% 80px;
+    text-align: center;
+}
+
+.content-block {
+    margin-bottom: 60px;
+}
+
+.content-block h2 {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: var(--text-main);
+}
+
+.content-block p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.step-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    background: rgba(59, 130, 246, 0.1);
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.step h4 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.step p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.cta-section {
+    padding: 80px 5%;
+}
+
+.cta-card {
+    text-align: center;
+    padding: 60px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.cta-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-card p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+}
+
+.cta-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.internal-links {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.internal-links a {
+    color: var(--primary-light);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .cta-btns {
+        flex-direction: column;
+    }
+    
+    .cta-card h2 {
+        font-size: 2rem;
+    }
+    
+    .step {
+        flex-direction: column;
+        gap: 15px;
     }
 }
