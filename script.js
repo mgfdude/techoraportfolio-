@@ -50,15 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
         menuCloseBtn.addEventListener('click', closeMenu);
     }
 
-    // Mobile Dropdown Toggle
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    // Mobile Dropdown Toggle (mobile only — desktop uses CSS hover)
     document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
         toggle.addEventListener('click', (e) => {
+            if (window.innerWidth > 768) return; // let CSS hover handle desktop
             e.preventDefault();
 
             const parent = toggle.closest('.dropdown');
 
-            // close others
+            // close other open dropdowns
             document.querySelectorAll('.dropdown').forEach(d => {
                 if (d !== parent) d.classList.remove('active');
             });
