@@ -841,6 +841,25 @@ footer {
     gap: 8px;
 }
 
+.footer-seo-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-seo-links a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-seo-links a:hover {
+    color: var(--primary);
+}
+
 footer p {
     color: var(--text-muted);
     font-size: 0.95rem;
