@@ -19,25 +19,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const links = document.querySelectorAll('.nav-links li a');
+    const menuOverlay = document.querySelector('.menu-overlay');
+
+    const closeMenu = () => {
+        navLinks.classList.remove('active');
+        if(menuOverlay) menuOverlay.classList.remove('active');
+        document.documentElement.classList.remove('menu-open');
+        document.body.classList.remove('menu-open');
+        if(hamburger) hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    };
 
     if (hamburger) {
         hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.innerHTML = navLinks.classList.contains('active') 
+            const isActive = navLinks.classList.toggle('active');
+            if(menuOverlay) menuOverlay.classList.toggle('active');
+            document.documentElement.classList.toggle('menu-open');
+            document.body.classList.toggle('menu-open');
+            hamburger.innerHTML = isActive 
                 ? '<i class="fa-solid fa-xmark"></i>' 
                 : '<i class="fa-solid fa-bars"></i>';
         });
     }
 
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', closeMenu);
+    }
+
     // Close mobile menu when link is clicked
     links.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
-            }
-        });
+        link.addEventListener('click', closeMenu);
     });
+
+    // Prevent background scrolling on iOS/mobile when menu is open
+    document.addEventListener('touchmove', (e) => {
+        if (document.body.classList.contains('menu-open')) {
+            e.preventDefault();
+        }
+    }, { passive: false });
 
     // Handle initial progress bar animation using IntersectionObserver
     const progressBars = document.querySelectorAll('.progress');

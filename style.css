@@ -733,6 +733,15 @@ span {
     transition: var(--transition);
 }
 
+.circle-btn {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.5rem;
+}
+
 .whatsapp {
     background: #25D366;
     color: white;
@@ -840,7 +849,7 @@ footer p {
 }
 
 /* Add body overflow hidden class */
-html.modal-open, body.modal-open {
+html.modal-open, body.modal-open, html.menu-open, body.menu-open {
     overflow: hidden !important;
 }
 
@@ -894,18 +903,60 @@ html.modal-open, body.modal-open {
 }
 
 @media (max-width: 768px) {
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(2, 6, 23, 0.6);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s ease;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
     .nav-links {
         position: fixed;
         top: 0;
         right: -100%;
         height: 100vh;
-        width: 250px;
-        background: rgba(15, 23, 42, 0.95);
-        backdrop-filter: blur(20px);
+        width: 50vw;
+        background: rgba(15, 23, 42, 0.98);
+        border-left: 1px solid var(--glass-border);
         flex-direction: column;
         justify-content: center;
+        align-items: flex-start;
+        padding-left: 10%;
         transition: right 0.4s ease;
-        border-left: 1px solid var(--glass-border);
+        z-index: 1000;
+    }
+
+    .nav-links li {
+        margin: 20px 0;
+    }
+
+    .nav-links li a {
+        font-size: 1.5rem;
+    }
+
+    .nav-links .btn-nav {
+        background: transparent;
+        border: none;
+        padding: 0;
+        color: var(--text-muted) !important;
+    }
+
+    .nav-links .btn-nav:hover {
+        background: transparent;
+        color: var(--text-main) !important;
     }
 
     .nav-links.active {
@@ -938,17 +989,55 @@ html.modal-open, body.modal-open {
         font-size: 2rem;
     }
     
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
     .section {
         padding: 60px 5%;
     }
-    
-    .social-links {
-        flex-direction: column;
-        width: 100%;
+
+    .section-header h2 {
+        font-size: 2rem;
     }
     
-    .social-btn {
-        width: 100%;
+    .social-links {
+        flex-direction: row;
         justify-content: center;
+    }
+
+    .contact-card {
+        padding: 30px 20px;
+    }
+
+    .mockup {
+        height: 250px;
+        transform: none !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .icon-box {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    .i-5 {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 1.6rem !important;
+    }
+
+    .services-grid, .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-buttons {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
     }
 }
