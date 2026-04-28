@@ -561,11 +561,21 @@ span {
 
 .project-img {
     height: 200px;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 4rem;
-    color: white;
+}
+
+.project-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.project-card:hover .project-img img {
+    transform: scale(1.1);
 }
 
 .bg-grad-1 { background: linear-gradient(135deg, #FF6B6B, #C0392B); }
