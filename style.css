@@ -1214,15 +1214,15 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         opacity: 1;
         visibility: visible;
         transform: none;
-        background: rgba(59, 130, 246, 0.03); /* Subtle card effect */
+        background: transparent; /* Clean transparent look */
         border: none;
         box-shadow: none;
-        margin: 5px 0 15px 5px;
-        padding: 10px 0 10px 30px; /* More indentation */
+        margin: 0;
+        padding: 5px 0 10px 25px; /* Clean indentation */
         display: none;
-        min-width: 100%;
+        width: 100%;
         border-left: 2px solid var(--primary);
-        border-radius: 0 15px 15px 0;
+        border-radius: 0;
     }
 
     .dropdown.active .dropdown-menu {
@@ -1232,9 +1232,9 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
 
     .dropdown.active .dropdown-toggle {
         color: var(--primary-light);
-        background: rgba(59, 130, 246, 0.05);
+        background: rgba(255, 255, 255, 0.03); /* Very subtle active highlight */
         padding-left: 10px;
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
     .dropdown-menu li {
