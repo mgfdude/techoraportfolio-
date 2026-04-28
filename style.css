@@ -1672,3 +1672,30 @@ body.menu-open {
     font-weight: 600;
     text-decoration: underline;
 }
+
+.services-master-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.service-points {
+    margin-top: 15px;
+    padding-left: 20px;
+    color: var(--text-muted);
+}
+
+.service-points li {
+    margin-bottom: 8px;
+}
+
+.service-points a {
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+@media (max-width: 991px) {
+    .services-master-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
