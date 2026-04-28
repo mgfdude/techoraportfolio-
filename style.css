@@ -1147,49 +1147,58 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         top: 0;
         right: -100%;
         height: 100vh;
-        width: 100%; /* Full screen */
-        background: rgba(10, 15, 30, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        width: 100%;
+        background: rgba(8, 12, 24, 0.99);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* Start from top */
         align-items: flex-start;
-        padding: 80px 10%;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 100px 8% 40px; /* Adjusted padding */
+        transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1000;
         overflow-y: auto;
     }
 
     .nav-links.active {
         right: 0;
+        animation: fadeInPanel 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeInPanel {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
     .nav-links li {
         width: 100%;
-        margin: 10px 0;
+        margin: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Section dividers */
     }
 
-    .nav-links li a {
-        font-size: 1.4rem;
-        display: block;
-        padding: 12px 0;
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links li a, .dropdown-toggle {
+        font-size: 1.15rem; /* Slightly smaller, cleaner */
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        min-height: 60px; /* Larger tap area */
         width: 100%;
+        color: var(--text-muted);
+        transition: all 0.3s ease;
     }
 
-    .nav-links .btn-nav {
-        background: transparent;
-        border: none;
-        padding: 12px 0;
-        color: var(--text-muted) !important;
-        font-size: 1.4rem;
+    .nav-links li a:active, .dropdown-toggle:active {
+        background: rgba(255, 255, 255, 0.03);
     }
 
     .dropdown-toggle {
-        font-size: 1.4rem;
-        width: 100%;
+        font-weight: 700; /* Bolder Services */
+        color: var(--text-main);
         justify-content: space-between;
-        padding: 12px 0;
-        color: var(--text-muted);
     }
 
     .dropdown-menu {
@@ -1197,20 +1206,24 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         opacity: 1;
         visibility: visible;
         transform: none;
-        background: transparent;
+        background: rgba(255, 255, 255, 0.02); /* Subtle bg for sub-menu */
         border: none;
         box-shadow: none;
-        margin-top: 0;
-        padding-left: 20px;
+        margin: 0;
+        padding: 0 0 10px 20px; /* Indentation */
         display: none;
         min-width: 100%;
-        border-left: 1px solid var(--glass-border);
-        margin-left: 5px;
+        border-left: 2px solid var(--primary);
     }
 
     .dropdown.active .dropdown-menu {
         display: block;
-        animation: slideDown 0.3s ease-out;
+        animation: slideDownNative 0.3s ease-out forwards;
+    }
+
+    @keyframes slideDownNative {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     .dropdown.active .dropdown-toggle {
@@ -1221,9 +1234,13 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         transform: rotate(180deg);
     }
 
+    .dropdown-menu li {
+        border-bottom: none; /* No dividers in submenu */
+    }
+
     .dropdown-menu li a {
-        font-size: 1.1rem;
-        padding: 10px 0;
+        font-size: 1rem;
+        min-height: 50px;
         color: var(--text-muted) !important;
     }
 
@@ -1287,11 +1304,6 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
     .step {
         flex-direction: column;
         gap: 15px;
-    }
-
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
     }
 }
 
