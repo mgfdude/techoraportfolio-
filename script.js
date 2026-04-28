@@ -23,20 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const closeMenu = () => {
         navLinks.classList.remove('active');
-        if(menuOverlay) menuOverlay.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
         document.documentElement.classList.remove('menu-open');
         document.body.classList.remove('menu-open');
-        if(hamburger) hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        if (hamburger) hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
     };
 
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             const isActive = navLinks.classList.toggle('active');
-            if(menuOverlay) menuOverlay.classList.toggle('active');
+            if (menuOverlay) menuOverlay.classList.toggle('active');
             document.documentElement.classList.toggle('menu-open');
             document.body.classList.toggle('menu-open');
-            hamburger.innerHTML = isActive 
-                ? '<i class="fa-solid fa-xmark"></i>' 
+            hamburger.innerHTML = isActive
+                ? '<i class="fa-solid fa-xmark"></i>'
                 : '<i class="fa-solid fa-bars"></i>';
         });
     }
@@ -52,13 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mobile Dropdown Toggle
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    dropdownToggles.forEach(toggle => {
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
         toggle.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const parent = toggle.closest('.dropdown');
-                parent.classList.toggle('active');
-            }
+            e.preventDefault();
+
+            const parent = toggle.closest('.dropdown');
+
+            // close others
+            document.querySelectorAll('.dropdown').forEach(d => {
+                if (d !== parent) d.classList.remove('active');
+            });
+
+            parent.classList.toggle('active');
         });
     });
 
@@ -76,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle initial progress bar animation using IntersectionObserver
     const progressBars = document.querySelectorAll('.progress');
-    
+
     // Set initial width to 0
     progressBars.forEach(bar => {
         const targetWidth = bar.style.width;
@@ -107,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
-            
+
             btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
@@ -139,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.innerHTML = 'Error! <i class="fa-solid fa-xmark"></i>';
                 btn.style.opacity = '1';
                 btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-                
+
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.style.background = '';
@@ -152,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Modal close logic
     const modal = document.getElementById('successModal');
     const closeBtn = document.getElementById('closeModalBtn');
-    
+
     if (modal && closeBtn) {
         closeBtn.addEventListener('click', () => {
             modal.classList.remove('active');
