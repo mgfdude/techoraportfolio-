@@ -601,7 +601,7 @@ span {
 
 /* ===== LOGOS ===== */
 .logos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
@@ -1065,30 +1065,8 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         font-size: 1.6rem !important;
     }
 
-    .services-grid, .projects-grid {
+    .services-grid, .projects-grid, .logos-grid {
         grid-template-columns: 1fr;
-    }
-
-    .logos-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-    }
-
-    .logo-item {
-        padding: 10px;
-    }
-
-    .logo-item img {
-        height: 150px;
-        padding: 10px;
-    }
-
-    .logo-desc h4 {
-        font-size: 1rem;
-    }
-
-    .logo-desc p {
-        font-size: 0.8rem;
     }
 
     .hero-buttons {
