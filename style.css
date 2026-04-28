@@ -1218,6 +1218,16 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
+    /* Hide floating tech icons on mobile — they overlap content */
+    .expertise-visual {
+        display: none;
+    }
+
+    /* Ensure content takes full width when icons are hidden */
+    .expertise-container {
+        flex-direction: column;
+    }
+
     .menu-overlay {
         position: fixed;
         top: 0;
