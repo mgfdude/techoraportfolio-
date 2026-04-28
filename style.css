@@ -1154,7 +1154,7 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 100px 8% 60px; /* More bottom padding for button */
+        padding: 70px 8% 40px;
         transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 1000;
         overflow-y: auto;
@@ -1187,7 +1187,7 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         font-weight: 500;
         display: flex;
         align-items: center;
-        padding: 20px 0;
+        padding: 16px 0;
         width: 100%;
         color: rgba(255, 255, 255, 0.85); /* Increased contrast */
         transition: all 0.2s ease;
@@ -1243,7 +1243,7 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
 
     .dropdown-menu li a {
         font-size: 1rem;
-        padding: 14px 0; /* More spacing between submenu items */
+        padding: 10px 0;
         color: rgba(255, 255, 255, 0.7) !important;
     }
 
@@ -1251,7 +1251,7 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
     .nav-links li:last-child {
         margin-top: auto; /* Push to bottom */
         border-bottom: none;
-        padding-top: 40px;
+        padding-top: 20px;
     }
 
     .nav-links .btn-nav {
