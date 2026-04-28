@@ -45,6 +45,18 @@ document.addEventListener('DOMContentLoaded', () => {
         menuOverlay.addEventListener('click', closeMenu);
     }
 
+    // Mobile Dropdown Toggle
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const parent = toggle.closest('.dropdown');
+                parent.classList.toggle('active');
+            }
+        });
+    });
+
     // Close mobile menu when link is clicked
     links.forEach(link => {
         link.addEventListener('click', closeMenu);
