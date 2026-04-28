@@ -787,6 +787,63 @@ footer p {
     font-size: 0.85rem !important;
 }
 
+/* ===== MODAL ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(2, 6, 23, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.modal-icon {
+    font-size: 3.5rem;
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+.modal-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    color: var(--text-muted);
+    margin-bottom: 25px;
+}
+
+/* Add body overflow hidden class */
+html.modal-open, body.modal-open {
+    overflow: hidden !important;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 991px) {
     .hero {

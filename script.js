@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // You can add your actual form submission logic here
             const btn = contactForm.querySelector('button[type="submit"]');
             const originalText = btn.innerHTML;
             
@@ -81,20 +80,58 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
 
-            // Simulate form submission delay
-            setTimeout(() => {
-                btn.innerHTML = 'Message Sent! <i class="fa-solid fa-check"></i>';
-                btn.style.opacity = '1';
-                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                contactForm.reset();
+            const formData = new FormData(contactForm);
+            const data = new URLSearchParams(formData);
 
-                // Reset button after 3 seconds
+            fetch(contactForm.action, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: data
+            }).then(() => {
+                contactForm.reset();
+                btn.innerHTML = originalText;
+                btn.style.pointerEvents = 'auto';
+                btn.style.opacity = '1';
+
+                const modal = document.getElementById('successModal');
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.classList.add('modal-open');
+                    document.documentElement.classList.add('modal-open');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                btn.innerHTML = 'Error! <i class="fa-solid fa-xmark"></i>';
+                btn.style.opacity = '1';
+                btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.style.background = '';
                     btn.style.pointerEvents = 'auto';
                 }, 3000);
-            }, 1000);
+            });
+        });
+    }
+
+    // Modal close logic
+    const modal = document.getElementById('successModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    
+    if (modal && closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            document.documentElement.classList.remove('modal-open');
+        });
+
+        // Close on clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
+                document.documentElement.classList.remove('modal-open');
+            }
         });
     }
 });
