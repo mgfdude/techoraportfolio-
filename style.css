@@ -182,8 +182,11 @@ span {
 }
 
 .logo-icon {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* THIS is important */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,7 +195,8 @@ span {
 .logo-icon img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    /* IMPORTANT: fills circle properly */
 }
 
 .nav-links {
@@ -1234,11 +1238,27 @@ body.menu-open {
         visibility: visible;
     }
 
-    .nav-links {
+    .navbar {
         position: fixed;
         top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2000;
+    }
+
+    /* When menu is open */
+    body.menu-open .navbar {
+        background: #020617;
+        backdrop-filter: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        /* height of navbar */
         right: -100%;
-        height: 100vh;
+        height: calc(100vh - 70px);
         width: 100%;
         background: #020617;
         backdrop-filter: none;
@@ -1377,21 +1397,19 @@ body.menu-open {
 
     /* Move Contact to bottom */
     .nav-links li:last-child {
-        margin-top: auto;
-        /* Push to bottom */
+        margin-top: 0;
+        padding-top: 0;
         border-bottom: none;
-        padding-top: 20px;
     }
 
     .nav-links .btn-nav {
-        background: var(--primary) !important;
-        color: white !important;
-        text-align: center;
-        justify-content: center;
-        border-radius: 15px;
-        font-weight: 700;
-        padding: 18px !important;
-        box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        all: unset;
+        display: flex;
+        align-items: center;
+        padding: 16px 0;
+        width: 100%;
+        font-size: 1.15rem;
+        color: rgba(255, 255, 255, 0.85);
     }
 
     @keyframes slideDownFade {
@@ -1480,6 +1498,29 @@ body.menu-open {
             opacity: 1;
             transform: translateY(0);
         }
+    }
+
+    .menu-footer {
+        margin-top: auto;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        width: 100%;
+        justify-content: center;
+    }
+
+    .menu-footer-logo {
+        font-family: var(--font-heading);
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        display: flex;
+        justify-content: center;
+        /* horizontal center */
+        align-items: center;
+        /* vertical center */
+        text-align: center;
+        width: 100%;
+        letter-spacing: 0.5px;
     }
 }
 
