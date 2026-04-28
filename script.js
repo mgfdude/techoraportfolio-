@@ -45,6 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         menuOverlay.addEventListener('click', closeMenu);
     }
 
+    const menuCloseBtn = document.querySelector('.menu-close');
+    if (menuCloseBtn) {
+        menuCloseBtn.addEventListener('click', closeMenu);
+    }
+
     // Mobile Dropdown Toggle
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     dropdownToggles.forEach(toggle => {

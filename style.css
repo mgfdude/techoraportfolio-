@@ -1148,16 +1148,38 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         right: -100%;
         height: 100vh;
         width: 100%;
-        background: rgba(8, 12, 24, 0.98);
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
+        background: #020617;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        padding: 70px 8% 40px;
+        padding: 20px 8% 30px;
         transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 1000;
         overflow-y: auto;
+    }
+
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 10px 0 20px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: white;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 10px;
+    }
+
+    .menu-brand {
+        font-weight: 700;
+    }
+
+    .menu-close {
+        font-size: 1.5rem;
+        cursor: pointer;
     }
 
     .nav-links.active {
@@ -1214,14 +1236,14 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
         opacity: 1;
         visibility: visible;
         transform: none;
-        background: transparent; /* Clean transparent look */
+        background: transparent;
         border: none;
         box-shadow: none;
         margin: 0;
-        padding: 5px 0 10px 25px; /* Clean indentation */
+        padding: 0 0 0 15px;
         display: none;
         width: 100%;
-        border-left: 2px solid var(--primary);
+        border-left: none;
         border-radius: 0;
     }
 
@@ -1232,9 +1254,9 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
 
     .dropdown.active .dropdown-toggle {
         color: var(--primary-light);
-        background: rgba(255, 255, 255, 0.03); /* Very subtle active highlight */
-        padding-left: 10px;
-        border-radius: 8px;
+        background: transparent;
+        padding-left: 0;
+        border-radius: 0;
     }
 
     .dropdown-menu li {
@@ -1242,8 +1264,8 @@ html.modal-open, body.modal-open, html.menu-open, body.menu-open {
     }
 
     .dropdown-menu li a {
-        font-size: 1rem;
-        padding: 10px 0;
+        font-size: 0.95rem;
+        padding: 8px 0;
         color: rgba(255, 255, 255, 0.7) !important;
     }
 
