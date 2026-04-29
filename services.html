@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/logo/main_logo.png">
+    <link rel="canonical" href="https://techora.in/services">
     <title>Digital Services in Kerala | Web Design, Automation & Branding - Techora</title>
     <meta name="description"
         content="Explore all digital services by Techora: website design, WhatsApp bots, QR menu setup, logo design, automation, branding, and digital assistance services in Kerala.">
@@ -12,15 +13,67 @@
         content="digital services Kerala, website design Kerala, WhatsApp bots Kerala, QR menu services Kerala, logo design Kerala, Techora services">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techora.in/services">
-    <meta property="og:title" content="All Digital Services by Techora">
+    <meta property="og:title" content="Digital Services in Kerala | Techora">
     <meta property="og:description"
         content="Complete Web, Automation & Branding Solutions in Kerala for growing businesses and creators.">
-    <meta property="og:image" content="images/logo/main_logo.png">
+    <meta property="og:image" content="https://techora.in/images/logo/main_logo.png">
+
     <link rel="stylesheet" href="style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .services-master-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .service-points {
+            margin: 18px 0 0;
+            padding-left: 20px;
+            color: var(--text-muted);
+            display: grid;
+            gap: 10px;
+        }
+
+        .service-points li {
+            line-height: 1.6;
+        }
+
+        .service-points a {
+            color: var(--primary-light);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .services-master-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Techora",
+      "url": "https://techora.in",
+      "logo": "https://techora.in/images/logo/main_logo.png",
+      "sameAs": [
+        "https://www.instagram.com/techoraofcl"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+919544181503",
+        "contactType": "customer support",
+        "areaServed": "IN"
+      }
+    }
+    </script>
 </head>
 
 <body>
@@ -31,10 +84,6 @@
             Techora
         </a>
         <ul class="nav-links">
-            <div class="mobile-header">
-                <span class="menu-brand">Techora</span>
-                <span class="menu-close">×</span>
-            </div>
             <li><a href="/">Home</a></li>
             <li class="dropdown">
                 <div class="dropdown-toggle">Services <i class="fa-solid fa-chevron-down"></i></div>
@@ -64,6 +113,9 @@
                 We provide website design, WhatsApp automation, QR menu systems, branding, and digital support services
                 across Kerala to help businesses grow faster.
             </p>
+            <p class="description" style="margin-top: 10px; color: var(--text-muted); font-size: 1rem;">
+                Affordable web design, automation, and branding services for businesses in Kerala.
+            </p>
         </div>
     </header>
 
@@ -85,6 +137,9 @@
                     <a href="/web-design-kerala">website design services</a>,
                     <a href="/whatsapp-bot-automation">WhatsApp automation</a>, and
                     <a href="/logo-design-kerala">branding solutions</a>.
+                </p>
+                <p style="margin-top: 10px; color: var(--text-muted);">
+                    Trusted by local clients and growing businesses across Kerala.
                 </p>
             </div>
 
@@ -133,25 +188,21 @@
         <div class="faq-container glass-card">
             <div class="faq-item">
                 <h3>What digital services do you offer in Kerala?</h3>
-                <p>We offer website design, WhatsApp automation, QR menu solutions, logo design, branding creatives, and
-                    practical digital assistance tailored for Kerala.</p>
+                <p>We offer website design, WhatsApp automation, QR menu solutions, logo design, branding creatives, and practical digital assistance tailored for Kerala.</p>
             </div>
             <div class="faq-item">
                 <h3>Which service is best for small businesses?</h3>
-                <p>Most small businesses start with website design plus WhatsApp automation, then expand with branding or
-                    QR-based systems based on their business model.</p>
+                <p>Most small businesses start with website design plus WhatsApp automation, then expand with branding or QR-based systems based on their business model.</p>
             </div>
             <div class="faq-item">
                 <h3>Do you provide affordable services for students or startups?</h3>
-                <p>Yes. We provide budget-friendly packages for students and startups, with practical solutions focused
-                    on fast setup and measurable growth.</p>
+                <p>Yes. We provide budget-friendly packages for students and startups, with practical solutions focused on fast setup and measurable growth.</p>
             </div>
         </div>
     </section>
 
     <section class="section cta-section">
         <div class="glass-card cta-card">
-            <p>Trusted by local clients and growing businesses across Kerala.</p>
             <h2>Need the Right Digital Solution?</h2>
             <p>
                 Tell us your requirement and get a custom solution tailored for your business in Kerala.
