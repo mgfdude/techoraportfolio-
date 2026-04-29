@@ -868,11 +868,14 @@ span {
     transform: translateX(4px);
 }
 
-.logos-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 280px); /* 🔥 fixed width */
-    justify-content: center; /* 🔥 center both cards */
-    gap: 30px;
+/* DESKTOP ONLY */
+@media (min-width: 769px) {
+    .logos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 280px);
+        justify-content: center;
+        gap: 30px;
+    }
 }
 
 .logo-item {
@@ -1836,20 +1839,20 @@ body.menu-open {
 
     .logos-grid {
         display: flex !important;
-        gap: 16px;
-        padding: 0 20px; /* 🔥 gives center spacing */
+        gap: 20px;
+        padding: 0 150px; /* 🔥 gives center spacing */
     }
 
     .logo-item {
-        flex: 0 0 75%; /* 🔥 reduced from 85% */
-        max-width: 300px; /* 🔥 prevents giant cards */
+        flex: 0 0 90%; /* 🔥 reduced from 95% */
+        max-width: none; /* 🔥 prevents giant cards */
         margin: 0 auto;
         scroll-snap-align: center;
-        padding: 20px;
+        padding: 30px;
         text-align: center;
     }
 
-    .logo-dots {
+     .logo-dots { 
         display: flex;
         justify-content: center;
         margin-top: 10px;
@@ -1866,7 +1869,7 @@ body.menu-open {
     }
 
     .logo-dots .dot.active {
-        width: 18px;
+        width: 20px;
         background: white;
         border-radius: 10px;
     }
