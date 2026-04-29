@@ -175,3 +175,162 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// ===== LOGO SLIDER SYSTEM =====
+
+const logos = [
+    "images/product/logo/kunjavas-logo.jpg",
+    "images/product/logo/fathoos-logo.jpg"
+];
+
+let currentIndex = 0;
+let modal;
+let modalImg;
+let startX = 0;
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    modal = document.getElementById("logoModal");
+    modalImg = document.getElementById("logoModalImg");
+
+    // ===== MODAL SWIPE (mobile + desktop touch) =====
+    modal.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    modal.addEventListener("touchend", (e) => {
+        let endX = e.changedTouches[0].clientX;
+        let diff = startX - endX;
+
+        if (diff > 50) showNext();
+        else if (diff < -50) showPrev();
+    });
+
+    // Click outside modal to close
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeLogo();
+    });
+
+    // Keyboard support (desktop)
+    document.addEventListener("keydown", (e) => {
+        if (!modal.classList.contains("active")) return;
+
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+        if (e.key === "Escape") closeLogo();
+    });
+
+    // ===== TAP vs SWIPE DETECTION (VERY IMPORTANT) =====
+    const cards = document.querySelectorAll('.logo-item');
+
+    cards.forEach((card, index) => {
+
+        let startX = 0;
+        let startY = 0;
+        let isSwipe = false;
+
+        card.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+            isSwipe = false;
+        });
+
+        card.addEventListener('touchmove', (e) => {
+            const dx = Math.abs(e.touches[0].clientX - startX);
+            const dy = Math.abs(e.touches[0].clientY - startY);
+
+            if (dx > 10 || dy > 10) {
+                isSwipe = true; // user is scrolling
+            }
+        });
+
+        card.addEventListener('touchend', () => {
+            if (!isSwipe) {
+                openLogo(index); // only open on tap
+            }
+        });
+
+        // Desktop click
+        card.addEventListener('click', () => {
+            if (window.innerWidth > 768) {
+                openLogo(index);
+            }
+        });
+
+    });
+
+    // ===== MOBILE CAROUSEL SNAP =====
+    const wrapper = document.querySelector('.logos-wrapper');
+
+    if (wrapper && window.innerWidth <= 768) {
+
+        let isScrolling;
+
+        wrapper.addEventListener('scroll', () => {
+            clearTimeout(isScrolling);
+
+            isScrolling = setTimeout(() => {
+
+                const cards = wrapper.querySelectorAll('.logo-item');
+                if (!cards.length) return;
+
+                let closest = 0;
+                let minDiff = Infinity;
+
+                cards.forEach((card, index) => {
+                    const cardLeft = card.offsetLeft;
+                    const diff = Math.abs(wrapper.scrollLeft - cardLeft);
+
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        closest = index;
+                    }
+                });
+
+                wrapper.scrollTo({
+                    left: cards[closest].offsetLeft,
+                    behavior: "smooth"
+                });
+
+            }, 80);
+
+        });
+
+    }
+
+});
+
+// ===== OPEN / CLOSE =====
+
+function openLogo(index) {
+    currentIndex = index;
+    modalImg.src = logos[currentIndex];
+    modal.classList.add("active");
+
+    document.body.style.overflow = "hidden"; // stop background scroll
+}
+
+function closeLogo() {
+    modal.classList.remove("active");
+    document.body.style.overflow = ""; // restore scroll
+}
+
+// ===== NAVIGATION =====
+
+function showNext() {
+    currentIndex = (currentIndex + 1) % logos.length;
+    updateImage();
+}
+
+function showPrev() {
+    currentIndex = (currentIndex - 1 + logos.length) % logos.length;
+    updateImage();
+}
+
+function updateImage() {
+    modalImg.style.opacity = 0;
+
+    setTimeout(() => {
+        modalImg.src = logos[currentIndex];
+        modalImg.style.opacity = 1;
+    }, 150);
+}

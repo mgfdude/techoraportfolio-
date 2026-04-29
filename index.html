@@ -232,7 +232,7 @@
                     <p>A modern personal portfolio website showcasing professional work and skills.</p>
                     <a href="https://hanankalathil.netlify.app" target="_blank" class="project-link">Visit Site <i
                             class="fa-solid fa-arrow-right"></i></a>
-                    </div>
+                </div>
             </div>
             <div class="project-card">
                 <div class="project-img bg-grad-3">
@@ -246,30 +246,30 @@
             </div>
         </div>
     </section>
-
     <section id="logos" class="section logos">
         <div class="section-header">
             <h2>Logo <span>Designs</span></h2>
             <p>Premium branding solutions crafted for local and digital businesses.</p>
         </div>
-        <div class="grid logos-grid">
-            <div class="logo-item glass-card">
-                <img src="images/product/logo/kunjavas-logo.jpg" alt="Kunjavas Goatlehyam Logo">
-                <div class="logo-desc">
-                    <h4>Kunjavas Goatlehyam</h4>
-                    <p>Nature-inspired agricultural branding</p>
+        <div class="logos-wrapper">
+            <div class="logos-grid">
+                <div class="logo-item glass-card">
+                    <img src="images/product/logo/kunjavas-logo.jpg">
+                    <div class="logo-desc">
+                        <h4>Kunjavas Goatlehyam</h4>
+                        <p>Nature-inspired agricultural branding</p>
+                    </div>
                 </div>
-            </div>
-            <div class="logo-item glass-card">
-                <img src="images/product/logo/fathoos-logo.jpg" alt="Fathoos Ice Cream Logo">
-                <div class="logo-desc">
-                    <h4>Fathoos Ice Cream</h4>
-                    <p>Playful & vibrant dessert branding</p>
+                <div class="logo-item glass-card">
+                    <img src="images/product/logo/fathoos-logo.jpg">
+                    <div class="logo-desc">
+                        <h4>Fathoos Ice Cream</h4>
+                        <p>Playful & vibrant dessert branding</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
     <section id="faq" class="section faq">
         <div class="section-header">
             <h2>Frequently Asked <span>Questions</span></h2>
@@ -372,6 +372,7 @@
             <p class="tagline">Making technology easy to use and accessible for everyone.</p>
         </div>
     </footer>
+
     <div id="successModal" class="modal-overlay">
         <div class="modal-content glass-card">
             <div class="modal-icon">
@@ -381,6 +382,13 @@
             <p>Your message has been successfully sent. We will get back to you shortly.</p>
             <button id="closeModalBtn" class="btn btn-primary">OK</button>
         </div>
+    </div>
+    <div id="logoModal" class="logo-modal">
+        <span class="logo-close" onclick="closeLogo()">&times;</span>
+
+        <div class="logo-arrow left" onclick="showPrev()">&#10094;</div>
+        <img id="logoModalImg" src="">
+        <div class="logo-arrow right" onclick="showNext()">&#10095;</div>
     </div>
 
     <script src="script.js"></script>
