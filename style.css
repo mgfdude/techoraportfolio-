@@ -98,6 +98,9 @@ span {
 .menu-footer {
     display: none;
 }
+.process-preview {
+    display: none;
+}
 
 /* ===== COMPONENTS ===== */
 .btn {
@@ -291,12 +294,15 @@ span {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    list-style: none;
+    padding-left: 0;
 }
 
 .dropdown-menu li {
     width: 100%;
     margin: 0 !important;
     gap: 0 !important;
+    list-style: none;
 }
 
 .dropdown-menu li a {
@@ -1628,6 +1634,141 @@ body.menu-open {
 }
 
 /* ===== SUB-PAGES & SEO COMPONENTS ===== */
+/* ===== PROCESS DESKTOP FIX ===== */
+@media (min-width: 992px) {
+
+    .process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* 🔥 PERFECT LINE ALIGNMENT */
+    .process-steps::before {
+        content: '';
+        position: absolute;
+        left: 68px; /* 🔥 FIXED */
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background: rgba(255,255,255,0.08);
+    }
+
+    /* 🔥 BETTER GRID BALANCE */
+    .step {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    /* 🔥 NUMBER CENTER FIX */
+    .step-num {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+    }
+
+    /* 🔥 TITLE FIX */
+    .step h4 {
+        margin: 0 0 6px;
+        line-height: 1.4;
+    }
+
+    /* 🔥 DESCRIPTION ALIGN */
+    .step p {
+        margin: 0;
+        line-height: 1.6;
+        max-width: 500px; /* 🔥 prevents long ugly lines */
+    }
+
+    /* 🔥 HOVER EFFECT */
+   /* .step:hover .step-num {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+        box-shadow: 0 0 20px rgba(59,130,246,0.6);
+    }*/
+    .step-content h4 {
+        margin: 0 0 6px;
+    }
+
+    .step-content p {
+        margin: 0;
+        line-height: 1.6;
+        max-width: 600px;
+    }
+}
+@media (min-width: 992px) {
+
+    .process-container {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: start;
+   }
+
+    .process-side {
+        position: relative;
+    }
+
+    .process-right {
+     position: sticky;
+     top: 38%;
+    }
+
+    .process-preview {
+     margin-top: 20px;
+     display: block;
+    }
+
+   .process-left {
+     min-width: 0;
+    }
+
+    .process-indicator {
+        position: sticky;
+        top: 120px;
+        padding: 30px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.03);
+        backdrop-filter: blur(10px);
+    }
+
+    .process-indicator span {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .process-indicator h4 {
+        margin: 10px 0 8px;
+    }
+
+    .process-indicator p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+    }
+    .step.active .step-num {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(59,130,246,0.6);
+    }
+
+    .step.active {
+        transform: translateX(6px);
+    }
+    .step {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .step:hover {
+        transform: translateX(6px);
+    }
+}
 .sub-hero {
     padding: 150px 5% 80px;
     text-align: center;
@@ -1838,10 +1979,10 @@ body.menu-open {
     }
 
     .logos-grid {
-        display: flex !important;
-        gap: 20px;
-        padding: 0 150px; /* 🔥 gives center spacing */
-    }
+    display: flex !important;
+    gap: 20px;
+    padding: 0 20px; /* ✅ real spacing */
+   }
 
     .logo-item {
         flex: 0 0 90%; /* 🔥 reduced from 95% */

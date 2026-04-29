@@ -107,6 +107,39 @@ document.addEventListener('DOMContentLoaded', () => {
         skillObserver.observe(bar);
     });
 
+const steps = document.querySelectorAll(".step");
+
+const stepData = [
+  { num:"1", title:"Discovery & Strategy", desc:"Understanding your business goals and audience.", icon:"fa-solid fa-magnifying-glass" },
+  { num:"2", title:"Design & Prototyping", desc:"Creating UI aligned with your brand.", icon:"fa-solid fa-pen" },
+  { num:"3", title:"Development", desc:"Building fast, secure systems.", icon:"fa-solid fa-code" },
+  { num:"4", title:"Testing & Optimization", desc:"Ensuring performance and SEO.", icon:"fa-solid fa-flask" },
+  { num:"5", title:"Launch & Support", desc:"Deployment and growth support.", icon:"fa-solid fa-rocket" }
+];
+
+const stepEl = document.getElementById("active-step");
+const titleEl = document.getElementById("active-title");
+const iconEl = document.getElementById("active-icon");
+const descEl = document.getElementById("active-desc");
+
+steps.forEach((step, index) => {
+    step.addEventListener("mouseenter", () => {
+
+        const data = stepData[index];
+
+        stepEl.innerText = data.num;
+        titleEl.innerText = data.title;
+        descEl.innerText = data.desc;
+
+        // 🔥 FIX ICON
+        iconEl.className = "";
+        iconEl.classList.add(...data.icon.split(" "));
+
+        steps.forEach(s => s.classList.remove("active"));
+        step.classList.add("active");
+    });
+});
+
     // Handle contact form submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -223,6 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===== MODAL SWIPE =====
+    if (modal) {
     modal.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
     });
@@ -237,7 +271,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.addEventListener("click", (e) => {
         if (e.target === modal) closeLogo();
+    
     });
+ }
 
     document.addEventListener("keydown", (e) => {
         if (!modal.classList.contains("active")) return;
@@ -248,6 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===== TAP vs SWIPE =====
+    if (cards.length) {
     cards.forEach((card, index) => {
 
         let startX = 0;
@@ -276,7 +313,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener('click', () => {
             if (window.innerWidth > 768) openLogo(index);
         });
-    });
+    }); 
+}
 
     // ===== MOBILE SNAP =====
     if (wrapper && window.innerWidth <= 768) {

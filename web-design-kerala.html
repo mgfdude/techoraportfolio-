@@ -59,7 +59,7 @@
         </div>
     </nav>
 
-    <header class="hero sub-hero">
+    <header class="hero">
         <div class="hero-shapes">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
@@ -74,6 +74,23 @@
             <div class="hero-buttons">
                 <a href="https://wa.me/919544181503" target="_blank" class="btn btn-primary"><i
                         class="fa-brands fa-whatsapp"></i> Get a Free Quote</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <div class="glass-card mockup">
+                <div class="mockup-header">
+                    <span class="circle red"></span>
+                    <span class="circle yellow"></span>
+                    <span class="circle green"></span>
+                </div>
+                <div class="mockup-body">
+                    <i class="fa-brands fa-html5 icon-large"></i> <!-- 🔥 changed icon -->
+                    <h4>HTML • CSS • 3D Responsive UI</h4>
+                    <div class="mockup-line w-100"></div>
+                    <div class="mockup-line w-75"></div>
+                    <div class="mockup-line w-50"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -117,44 +134,84 @@
                 </div>
             </div>
 
+
+            <!-- HEADER (moved OUTSIDE wrapper for clean layout) -->
             <div class="content-block">
                 <h2>Our Website Design Process</h2>
                 <p>
-                    We follow a transparent and efficient 5-step process to bring your vision to life. As a leading
-                    provider of website design in Kerala, we prioritize communication and quality at every stage.
+                    We follow a transparent and efficient 5-step process to bring your vision to life.
                 </p>
-                <div class="process-steps">
-                    <div class="step">
-                        <span class="step-num">01</span>
-                        <h4>Discovery & Strategy</h4>
-                        <p>We start by understanding your business goals, target audience, and specific requirements for
-                            your Kerala-based business.</p>
+            </div>
+
+            <!-- PROCESS SECTION -->
+            <div class="process-wrapper">
+
+                <div class="process-container">
+
+                    <!-- LEFT SIDE -->
+                    <div class="process-left">
+                        <div class="process-steps">
+
+                            <div class="step">
+                                <span class="step-num">01</span>
+                                <div class="step-content">
+                                    <h4>Discovery & Strategy</h4>
+                                    <p>We start by understanding your business goals, audience, and requirements.</p>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">02</span>
+                                <div class="step-content">
+                                    <h4>Design & Prototyping</h4>
+                                    <p>We create UI designs aligned with your brand and user experience.</p>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">03</span>
+                                <div class="step-content">
+                                    <h4>Development</h4>
+                                    <p>We build fast, secure, and scalable websites using modern tech.</p>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">04</span>
+                                <div class="step-content">
+                                    <h4>Testing & Optimization</h4>
+                                    <p>We test performance, responsiveness, and SEO before launch.</p>
+                                </div>
+                            </div>
+
+                            <div class="step">
+                                <span class="step-num">05</span>
+                                <div class="step-content">
+                                    <h4>Launch & Support</h4>
+                                    <p>We deploy your website and provide ongoing support.</p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="step">
-                        <span class="step-num">02</span>
-                        <h4>Design & Prototyping</h4>
-                        <p>Our designers create a visual mockup that aligns with your brand identity and focuses on user
-                            experience.</p>
+
+                    <!-- RIGHT SIDE -->
+                    <div class="glass-card process-preview">
+
+                        <!-- 🔥 ADD THIS -->
+                       
+                        <span id="active-step">1</span>
+                        
+                         <i id="active-icon" class="fa-solid fa-lightbulb"></i>
+                        <h4 id="active-title">Discovery & Strategy</h4>
+                        <p id="active-desc">
+                            Understanding your business goals and audience.
+                        </p>
+                        
                     </div>
-                    <div class="step">
-                        <span class="step-num">03</span>
-                        <h4>Development</h4>
-                        <p>Using modern technologies like HTML5, CSS3, and JavaScript, we build a fast and secure
-                            website tailored to your needs.</p>
-                    </div>
-                    <div class="step">
-                        <span class="step-num">04</span>
-                        <h4>Testing & Optimization</h4>
-                        <p>We rigorously test the site for performance, mobile responsiveness, and SEO before going
-                            live.</p>
-                    </div>
-                    <div class="step">
-                        <span class="step-num">05</span>
-                        <h4>Launch & Support</h4>
-                        <p>Once you are happy, we launch the site and provide ongoing support to help your business grow
-                            in Kerala.</p>
-                    </div>
+
                 </div>
+
             </div>
 
             <div class="content-block">
@@ -162,7 +219,8 @@
                 <p>
                     We have helped numerous businesses and individuals achieve their digital goals. Our expertise in
                     website design in Kerala is reflected in our diverse portfolio.
-                    Built for a Kerala-based student, this portfolio helped increase visibility and attract freelance
+                    Built for a Kerala-based student, this portfolio helped increase visibility and attract
+                    freelance
                     opportunities within 2 weeks.
                 </p>
                 <div class="grid projects-grid">
@@ -174,6 +232,8 @@
                             <h4>Roshith's Personal Site</h4>
                             <p>A custom-built digital presence for personal branding, showcasing our capability in
                                 high-end personal website design in Kerala.</p>
+                                <a href="https://roshith.page.gd/" target="_blank" class="project-link">Visit Site <i
+                            class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                     <div class="project-card">
@@ -184,6 +244,8 @@
                             <h4>Hanan Kalathil Portfolio</h4>
                             <p>A modern portfolio website built for a professional, highlighting our clean design
                                 aesthetic and fast performance.</p>
+                                <a href="https://hanankalathil.netlify.app" target="_blank" class="project-link">Visit Site <i
+                            class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -192,7 +254,8 @@
             <div class="internal-links content-block">
                 <h3>Looking for more ways to grow?</h3>
                 <p>
-                    Boost your business further with our <a href="/whatsapp-bot-automation">WhatsApp Bot Automation</a>
+                    Boost your business further with our <a href="/whatsapp-bot-automation">WhatsApp Bot
+                        Automation</a>
                     or streamline your restaurant with our <a href="/qr-menu-for-restaurants">QR Menu Solutions in
                         Kerala</a>.
                 </p>
@@ -200,7 +263,8 @@
             <div class="internal-links content-block">
                 <h3>Explore All Services</h3>
                 <p>
-                    Looking beyond website design? <a href="/services">View All Services</a> to discover Techora's full
+                    Looking beyond website design? <a href="/services">View All Services</a> to discover Techora's
+                    full
                     web, automation, branding, and digital assistance offerings.
                 </p>
             </div>
