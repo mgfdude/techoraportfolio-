@@ -192,7 +192,37 @@ document.addEventListener("DOMContentLoaded", () => {
     modal = document.getElementById("logoModal");
     modalImg = document.getElementById("logoModalImg");
 
-    // ===== MODAL SWIPE (mobile + desktop touch) =====
+    const wrapper = document.querySelector('.logos-wrapper');
+    const cards = document.querySelectorAll('.logo-item');
+    const dotContainer = document.querySelector('.logo-dots');
+
+    let dots = [];
+
+    // ===== CREATE DOTS DYNAMICALLY =====
+    if (dotContainer && cards.length) {
+        dotContainer.innerHTML = "";
+
+        cards.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+
+            if (index === 0) dot.classList.add('active');
+
+            // 🔥 click to jump
+            dot.addEventListener('click', () => {
+                wrapper.scrollTo({
+                    left: cards[index].offsetLeft,
+                    behavior: "smooth"
+                });
+            });
+
+            dotContainer.appendChild(dot);
+        });
+
+        dots = document.querySelectorAll('.logo-dots .dot');
+    }
+
+    // ===== MODAL SWIPE =====
     modal.addEventListener("touchstart", (e) => {
         startX = e.touches[0].clientX;
     });
@@ -205,12 +235,10 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (diff < -50) showPrev();
     });
 
-    // Click outside modal to close
     modal.addEventListener("click", (e) => {
         if (e.target === modal) closeLogo();
     });
 
-    // Keyboard support (desktop)
     document.addEventListener("keydown", (e) => {
         if (!modal.classList.contains("active")) return;
 
@@ -219,9 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "Escape") closeLogo();
     });
 
-    // ===== TAP vs SWIPE DETECTION (VERY IMPORTANT) =====
-    const cards = document.querySelectorAll('.logo-item');
-
+    // ===== TAP vs SWIPE =====
     cards.forEach((card, index) => {
 
         let startX = 0;
@@ -239,28 +265,20 @@ document.addEventListener("DOMContentLoaded", () => {
             const dy = Math.abs(e.touches[0].clientY - startY);
 
             if (dx > 10 || dy > 10) {
-                isSwipe = true; // user is scrolling
+                isSwipe = true;
             }
         });
 
         card.addEventListener('touchend', () => {
-            if (!isSwipe) {
-                openLogo(index); // only open on tap
-            }
+            if (!isSwipe) openLogo(index);
         });
 
-        // Desktop click
         card.addEventListener('click', () => {
-            if (window.innerWidth > 768) {
-                openLogo(index);
-            }
+            if (window.innerWidth > 768) openLogo(index);
         });
-
     });
 
-    // ===== MOBILE CAROUSEL SNAP =====
-    const wrapper = document.querySelector('.logos-wrapper');
-
+    // ===== MOBILE SNAP =====
     if (wrapper && window.innerWidth <= 768) {
 
         let isScrolling;
@@ -270,15 +288,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             isScrolling = setTimeout(() => {
 
-                const cards = wrapper.querySelectorAll('.logo-item');
-                if (!cards.length) return;
-
                 let closest = 0;
                 let minDiff = Infinity;
 
                 cards.forEach((card, index) => {
-                    const cardLeft = card.offsetLeft;
-                    const diff = Math.abs(wrapper.scrollLeft - cardLeft);
+                    const diff = Math.abs(wrapper.scrollLeft - card.offsetLeft);
 
                     if (diff < minDiff) {
                         minDiff = diff;
@@ -291,10 +305,76 @@ document.addEventListener("DOMContentLoaded", () => {
                     behavior: "smooth"
                 });
 
+                // ===== UPDATE DOTS =====
+                dots.forEach(dot => dot.classList.remove('active'));
+                if (dots[closest]) dots[closest].classList.add('active');
+
             }, 80);
-
         });
+    }
 
+    if (wrapper && window.innerWidth <= 768) {
+
+        let autoPlayInterval;
+        let idleTimer;
+
+        function startAutoPlay() {
+            stopAutoPlay(); // avoid duplicates
+
+            autoPlayInterval = setInterval(() => {
+
+                let nextIndex = (getCurrentIndex() + 1) % cards.length;
+
+                wrapper.scrollTo({
+                    left: cards[nextIndex].offsetLeft,
+                    behavior: "smooth"
+                });
+
+                updateDots(nextIndex);
+
+            }, 2500); // speed of auto swipe
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            stopAutoPlay();
+
+            idleTimer = setTimeout(() => {
+                startAutoPlay();
+            }, 2000); // 🔥 2 sec inactivity
+        }
+
+        function getCurrentIndex() {
+            let closest = 0;
+            let minDiff = Infinity;
+
+            cards.forEach((card, index) => {
+                const diff = Math.abs(wrapper.scrollLeft - card.offsetLeft);
+
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closest = index;
+                }
+            });
+
+            return closest;
+        }
+
+        function updateDots(index) {
+            dots.forEach(dot => dot.classList.remove('active'));
+            if (dots[index]) dots[index].classList.add('active');
+        }
+
+        // ===== USER INTERACTION DETECTION =====
+        wrapper.addEventListener('touchstart', resetIdleTimer);
+        wrapper.addEventListener('scroll', resetIdleTimer);
+
+        // ===== INITIAL START =====
+        resetIdleTimer();
     }
 
 });
@@ -305,13 +385,12 @@ function openLogo(index) {
     currentIndex = index;
     modalImg.src = logos[currentIndex];
     modal.classList.add("active");
-
-    document.body.style.overflow = "hidden"; // stop background scroll
+    document.body.style.overflow = "hidden";
 }
 
 function closeLogo() {
     modal.classList.remove("active");
-    document.body.style.overflow = ""; // restore scroll
+    document.body.style.overflow = "";
 }
 
 // ===== NAVIGATION =====

@@ -1802,3 +1802,25 @@ body.menu-open {
         display: none;
     }
 }
+
+
+.logo-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    gap: 8px;
+}
+
+.logo-dots .dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.logo-dots .dot.active {
+    width: 18px;
+    background: white;
+    border-radius: 10px;
+}
