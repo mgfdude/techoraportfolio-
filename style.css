@@ -832,12 +832,12 @@ span {
 
 .logo-item img {
     width: 100%;
-    height: 250px;
+    height: 160px;
     object-fit: contain;
-    border-radius: 15px;
+    border-radius: 12px;
     margin-bottom: 20px;
     background: white;
-    padding: 15px;
+    padding: 10px;
 }
 
 .logo-desc h4 {
@@ -1776,30 +1776,25 @@ body.menu-open {
     .logos-wrapper {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        display: block;
         -webkit-overflow-scrolling: touch;
-        padding-left: 16px;
+
+        display: flex;
+        justify-content: center; /* 🔥 important */
     }
 
     .logos-grid {
         display: flex !important;
         gap: 16px;
-        width: max-content;
-        /* 🔥 THIS ENABLES SCROLL */
+        padding: 0 20px; /* 🔥 gives center spacing */
     }
 
     .logo-item {
-        flex: 0 0 85%;
+        flex: 0 0 80%; /* 🔥 reduced from 85% */
+        max-width: 300px; /* 🔥 prevents giant cards */
+        margin: 0 auto;
         scroll-snap-align: center;
-    }
-
-    .logo-item img {
-        height: 200px;
-        object-fit: contain;
-    }
-
-    .logos-wrapper::-webkit-scrollbar {
-        display: none;
+        padding: 20px;
+        text-align: center;
     }
 }
 
@@ -1807,7 +1802,7 @@ body.menu-open {
 .logo-dots {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin-top: 10px;
     gap: 8px;
 }
 
