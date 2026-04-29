@@ -95,6 +95,10 @@ span {
     margin: 0 auto;
 }
 
+.menu-footer {
+    display: none;
+}
+
 /* ===== COMPONENTS ===== */
 .btn {
     display: inline-block;
@@ -751,11 +755,12 @@ span {
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     overflow: hidden;
+    cursor: pointer;
     transition: var(--transition);
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(1.01);
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
@@ -817,10 +822,56 @@ span {
 .project-link:hover {
     color: var(--primary);
 }
+.projects-more {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.projects-more-link {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-muted);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+/* hover text */
+.projects-more-link:hover {
+    color: var(--text-main);
+}
+
+/* underline animation */
+.projects-more-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.projects-more-link:hover::after {
+    width: 100%;
+}
+
+/* arrow movement */
+.projects-more-link i {
+    transition: transform 0.3s ease;
+}
+
+.projects-more-link:hover i {
+    transform: translateX(4px);
+}
 
 .logos-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 280px); /* 🔥 fixed width */
+    justify-content: center; /* 🔥 center both cards */
     gap: 30px;
 }
 
@@ -832,7 +883,7 @@ span {
 
 .logo-item img {
     width: 100%;
-    height: 160px;
+    height: 130px;
     object-fit: contain;
     border-radius: 12px;
     margin-bottom: 20px;
@@ -1527,6 +1578,7 @@ body.menu-open {
     }
 
     .menu-footer {
+        display: flex; /* 🔥 THIS LINE */
         margin-top: auto;
         padding-top: 25px;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -1789,33 +1841,35 @@ body.menu-open {
     }
 
     .logo-item {
-        flex: 0 0 80%; /* 🔥 reduced from 85% */
+        flex: 0 0 75%; /* 🔥 reduced from 85% */
         max-width: 300px; /* 🔥 prevents giant cards */
         margin: 0 auto;
         scroll-snap-align: center;
         padding: 20px;
         text-align: center;
     }
+
+    .logo-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 8px;
+    
+    }
+
+    .logo-dots .dot {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+
+    .logo-dots .dot.active {
+        width: 18px;
+        background: white;
+        border-radius: 10px;
+    }
 }
 
 
-.logo-dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    gap: 8px;
-}
-
-.logo-dots .dot {
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-}
-
-.logo-dots .dot.active {
-    width: 18px;
-    background: white;
-    border-radius: 10px;
-}

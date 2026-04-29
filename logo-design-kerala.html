@@ -162,42 +162,43 @@
                 <p>
                     Take a look at some of the brands we have helped build from the ground up in Kerala:
                 </p>
-                <div class="grid logos-grid">
-                    <div class="logo-item glass-card">
-                        <img src="images/product/logo/kunjavas-logo.jpg" alt="Kunjavas Goatlehyam Logo">
-                        <div class="logo-desc">
-                            <h4>Kunjavas Goatlehyam</h4>
-                            <p>A nature-inspired logo for an agricultural business in Kerala, focusing on trust and
-                                tradition.</p>
+                <div class="logos-wrapper">
+                    <div class="logos-grid">
+                        <div class="logo-item glass-card">
+                            <img src="images/product/logo/kunjavas-logo.jpg">
+                            <div class="logo-desc">
+                                <h4>Kunjavas Goatlehyam</h4>
+                                <p>Nature-inspired agricultural branding</p>
+                            </div>
+                        </div>
+                        <div class="logo-item glass-card">
+                            <img src="images/product/logo/fathoos-logo.jpg">
+                            <div class="logo-desc">
+                                <h4>Fathoos Ice Cream</h4>
+                                <p>Playful & vibrant dessert branding</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="logo-item glass-card">
-                        <img src="images/product/logo/fathoos-logo.jpg" alt="Fathoos Ice Cream Logo">
-                        <div class="logo-desc">
-                            <h4>Fathoos Ice Cream</h4>
-                            <p>A playful and vibrant logo designed for a dessert brand in Kerala, highlighting fun and
-                                flavor.</p>
-                        </div>
-                    </div>
+                    <div class="logo-dots"></div>
+                </div>
+
+                <div class="internal-links content-block">
+                    <h3>Ready to Launch Your Brand?</h3>
+                    <p>
+                        Every great brand needs a home! Explore our <a href="/web-design-kerala">Website Design in
+                            Kerala</a> services or see how <a href="/whatsapp-bot-automation">WhatsApp Automation</a>
+                        can
+                        help you communicate with your new brand identity.
+                    </p>
+                </div>
+                <div class="internal-links content-block">
+                    <h3>Explore All Services</h3>
+                    <p>
+                        Planning your next brand move? <a href="/services">View All Services</a> to explore everything
+                        Techora offers for design, web, and automation.
+                    </p>
                 </div>
             </div>
-
-            <div class="internal-links content-block">
-                <h3>Ready to Launch Your Brand?</h3>
-                <p>
-                    Every great brand needs a home! Explore our <a href="/web-design-kerala">Website Design in
-                        Kerala</a> services or see how <a href="/whatsapp-bot-automation">WhatsApp Automation</a> can
-                    help you communicate with your new brand identity.
-                </p>
-            </div>
-            <div class="internal-links content-block">
-                <h3>Explore All Services</h3>
-                <p>
-                    Planning your next brand move? <a href="/services">View All Services</a> to explore everything
-                    Techora offers for design, web, and automation.
-                </p>
-            </div>
-        </div>
     </section>
 
     <section class="section faq">
@@ -252,6 +253,13 @@
             <p class="tagline">Making technology easy to use and accessible for everyone.</p>
         </div>
     </footer>
+    <div id="logoModal" class="logo-modal">
+        <span class="logo-close" onclick="closeLogo()">&times;</span>
+
+        <div class="logo-arrow left" onclick="showPrev()">&#10094;</div>
+        <img id="logoModalImg" src="">
+        <div class="logo-arrow right" onclick="showNext()">&#10095;</div>
+    </div>
 
     <script src="script.js"></script>
 </body>
