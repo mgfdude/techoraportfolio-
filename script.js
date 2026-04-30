@@ -451,3 +451,28 @@ function updateImage() {
         modalImg.style.opacity = 1;
     }, 150);
 }
+
+// ===== COOKIE CONSENT SYSTEM =====
+
+function setCookieConsent(value) {
+  localStorage.setItem("cookieConsent", value);
+  document.getElementById("cookieBanner").style.display = "none";
+}
+
+function acceptCookies() {
+  setCookieConsent("accepted");
+}
+
+function rejectCookies() {
+  setCookieConsent("rejected");
+}
+
+function checkCookieConsent() {
+  const consent = localStorage.getItem("cookieConsent");
+
+  if (!consent) {
+    document.getElementById("cookieBanner").style.display = "block";
+  }
+}
+
+window.addEventListener("load", checkCookieConsent);

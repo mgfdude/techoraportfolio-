@@ -2027,4 +2027,38 @@ body.menu-open {
     }
 }
 
+/* ===== COOKIE BANNER ===== */
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 9999;
+    display: none;
+    text-align: center;
+}
+
+.cookie-banner p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.cookie-banner a {
+    color: #60a5fa;
+}
+
+.cookie-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
 
