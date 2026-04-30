@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Set current year in footer
-    const yearSpan = document.getElementById('year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
+    // Set current year in footer and menu
+    const yearSpans = document.querySelectorAll('#year');
+    yearSpans.forEach(span => {
+        span.textContent = new Date().getFullYear();
+    });
 
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
