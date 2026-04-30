@@ -1166,6 +1166,25 @@ footer {
     color: var(--primary);
 }
 
+.footer-legal-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-legal-links a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-legal-links a:hover {
+    color: var(--primary);
+}
+
 footer p {
     color: var(--text-muted);
     font-size: 0.95rem;
@@ -1619,6 +1638,14 @@ body.menu-open {
         text-align: center;
         width: 100%;
         letter-spacing: 0.5px;
+    }
+
+    .footer-seo-links {
+        gap: 15px;
+    }
+
+    .footer-legal-links {
+        gap: 15px;
     }
 }
 
