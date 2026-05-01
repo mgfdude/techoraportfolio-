@@ -1,0 +1,77 @@
+services:
+  - type: static
+    name: techora-site
+    staticPublishPath: ./
+    routes:
+      - type: redirect
+        source: /website-cost-kerala
+        destination: /blog/website-cost-kerala
+      - type: redirect
+        source: /website-cost-kerala.html
+        destination: /blog/website-cost-kerala
+      - type: redirect
+        source: /website-developer-palakkad
+        destination: /blog/website-developer-palakkad
+      - type: redirect
+        source: /website-developer-palakkad.html
+        destination: /blog/website-developer-palakkad
+      - type: redirect
+        source: /why-business-need-website
+        destination: /blog/why-business-need-website
+      - type: redirect
+        source: /why-business-need-website.html
+        destination: /blog/why-business-need-website
+      - type: redirect
+        source: /qr-menu-benefits-kerala
+        destination: /blog/qr-menu-benefits-kerala
+      - type: redirect
+        source: /qr-menu-benefits-kerala.html
+        destination: /blog/qr-menu-benefits-kerala
+      - type: redirect
+        source: /whatsapp-automation-kerala
+        destination: /blog/whatsapp-automation-kerala
+      - type: redirect
+        source: /whatsapp-automation-kerala.html
+        destination: /blog/whatsapp-automation-kerala
+      - type: redirect
+        source: /web-design-kerala
+        destination: /services/web-design-kerala
+      - type: redirect
+        source: /web-design-kerala.html
+        destination: /services/web-design-kerala
+      - type: redirect
+        source: /whatsapp-bot-automation
+        destination: /services/whatsapp-bot-automation
+      - type: redirect
+        source: /whatsapp-bot-automation.html
+        destination: /services/whatsapp-bot-automation
+      - type: redirect
+        source: /qr-menu-for-restaurants
+        destination: /services/qr-menu-for-restaurants
+      - type: redirect
+        source: /qr-menu-for-restaurants.html
+        destination: /services/qr-menu-for-restaurants
+      - type: redirect
+        source: /logo-design-kerala
+        destination: /services/logo-design-kerala
+      - type: redirect
+        source: /logo-design-kerala.html
+        destination: /services/logo-design-kerala
+      - type: redirect
+        source: /privacy
+        destination: /legal/privacy.html
+      - type: redirect
+        source: /privacy.html
+        destination: /legal/privacy.html
+      - type: redirect
+        source: /terms
+        destination: /legal/terms.html
+      - type: redirect
+        source: /terms.html
+        destination: /legal/terms.html
+      - type: redirect
+        source: /copyright
+        destination: /legal/copyright.html
+      - type: redirect
+        source: /copyright.html
+        destination: /legal/copyright.html
