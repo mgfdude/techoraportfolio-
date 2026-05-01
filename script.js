@@ -211,8 +211,8 @@ if (stepEl && titleEl && iconEl && descEl && steps.length > 0) {
 // ===== LOGO SLIDER SYSTEM =====
 
 const logos = [
-    "images/product/logo/kunjavas-logo.jpg",
-    "images/product/logo/fathoos-logo.jpg"
+    "/images/product/logo/kunjavas-logo.jpg",
+    "/images/product/logo/fathoos-logo.jpg"
 ];
 
 let currentIndex = 0;
