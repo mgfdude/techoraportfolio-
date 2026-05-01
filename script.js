@@ -109,36 +109,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const steps = document.querySelectorAll(".step");
 
-const stepData = [
-  { num:"1", title:"Discovery & Strategy", desc:"Understanding your business goals and audience.", icon:"fa-solid fa-magnifying-glass" },
-  { num:"2", title:"Design & Prototyping", desc:"Creating UI aligned with your brand.", icon:"fa-solid fa-pen" },
-  { num:"3", title:"Development", desc:"Building fast, secure systems.", icon:"fa-solid fa-code" },
-  { num:"4", title:"Testing & Optimization", desc:"Ensuring performance and SEO.", icon:"fa-solid fa-flask" },
-  { num:"5", title:"Launch & Support", desc:"Deployment and growth support.", icon:"fa-solid fa-rocket" }
-];
-
 const stepEl = document.getElementById("active-step");
 const titleEl = document.getElementById("active-title");
 const iconEl = document.getElementById("active-icon");
 const descEl = document.getElementById("active-desc");
 
-steps.forEach((step, index) => {
-    step.addEventListener("mouseenter", () => {
+if (stepEl && titleEl && iconEl && descEl && steps.length > 0) {
+    // Initialize the first step as active visually
+    if (!document.querySelector(".step.active")) {
+        steps[0].classList.add("active");
+    }
 
-        const data = stepData[index];
+    steps.forEach((step) => {
+        step.addEventListener("mouseenter", () => {
+            const num = step.querySelector('.step-num') ? step.querySelector('.step-num').innerText : "1";
+            const title = step.querySelector('h4') ? step.querySelector('h4').innerText : "";
+            const desc = step.querySelector('p') ? step.querySelector('p').innerText : "";
+            const icon = step.getAttribute('data-icon') || 'fa-solid fa-check';
 
-        stepEl.innerText = data.num;
-        titleEl.innerText = data.title;
-        descEl.innerText = data.desc;
+            stepEl.innerText = num;
+            titleEl.innerText = title;
+            descEl.innerText = desc;
 
-        // 🔥 FIX ICON
-        iconEl.className = "";
-        iconEl.classList.add(...data.icon.split(" "));
+            iconEl.className = "";
+            iconEl.classList.add(...icon.split(" "));
 
-        steps.forEach(s => s.classList.remove("active"));
-        step.classList.add("active");
+            steps.forEach(s => s.classList.remove("active"));
+            step.classList.add("active");
+        });
     });
-});
+}
 
     // Handle contact form submission
     const contactForm = document.getElementById('contactForm');
