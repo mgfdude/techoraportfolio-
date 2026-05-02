@@ -172,8 +172,8 @@ if (stepEl && titleEl && iconEl && descEl && steps.length > 0) {
             let emailJSRequest;
             if (typeof emailjs !== 'undefined') {
                 emailJSRequest = emailjs.send(
-                    'YOUR_SERVICE_ID', 
-                    'YOUR_TEMPLATE_ID', 
+                    'service_nd6swf1', 
+                    'template_fedkfpo', 
                     {
                         name: nameVal,
                         email: emailVal,
