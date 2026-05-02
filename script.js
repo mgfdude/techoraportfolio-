@@ -156,34 +156,60 @@ if (stepEl && titleEl && iconEl && descEl && steps.length > 0) {
             const formData = new FormData(contactForm);
             const data = new URLSearchParams(formData);
 
-            fetch(contactForm.action, {
+            // Extract values for EmailJS
+            const nameVal = document.getElementById('name').value;
+            const emailVal = document.getElementById('email').value;
+            const messageVal = document.getElementById('message').value;
+
+            // 1. Google Forms Request
+            const googleFormRequest = fetch(contactForm.action, {
                 method: 'POST',
                 mode: 'no-cors',
                 body: data
-            }).then(() => {
-                contactForm.reset();
-                btn.innerHTML = originalText;
-                btn.style.pointerEvents = 'auto';
-                btn.style.opacity = '1';
-
-                const modal = document.getElementById('successModal');
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.classList.add('modal-open');
-                    document.documentElement.classList.add('modal-open');
-                }
-            }).catch(error => {
-                console.error('Error:', error);
-                btn.innerHTML = 'Error! <i class="fa-solid fa-xmark"></i>';
-                btn.style.opacity = '1';
-                btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.background = '';
-                    btn.style.pointerEvents = 'auto';
-                }, 3000);
             });
+
+            // 2. EmailJS Request
+            let emailJSRequest;
+            if (typeof emailjs !== 'undefined') {
+                emailJSRequest = emailjs.send(
+                    'YOUR_SERVICE_ID', 
+                    'YOUR_TEMPLATE_ID', 
+                    {
+                        name: nameVal,
+                        email: emailVal,
+                        message: messageVal
+                    }
+                );
+            } else {
+                emailJSRequest = Promise.resolve('EmailJS not loaded');
+            }
+
+            // Execute both simultaneously
+            Promise.allSettled([googleFormRequest, emailJSRequest])
+                .then(() => {
+                    contactForm.reset();
+                    btn.innerHTML = originalText;
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+
+                    const modal = document.getElementById('successModal');
+                    if (modal) {
+                        modal.classList.add('active');
+                        document.body.classList.add('modal-open');
+                        document.documentElement.classList.add('modal-open');
+                    }
+                }).catch(error => {
+                    console.error('Error:', error);
+                    btn.innerHTML = 'Error! <i class="fa-solid fa-xmark"></i>';
+                    btn.style.opacity = '1';
+                    btn.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = '';
+                        btn.style.pointerEvents = 'auto';
+                    }, 3000);
+                });
         });
     }
 
