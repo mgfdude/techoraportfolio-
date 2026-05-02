@@ -127,14 +127,15 @@ span {
 }
 
 .btn-secondary {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
+    background: var(--secondary);
     color: white;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--secondary-light);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
     transform: translateY(-2px);
 }
 
@@ -440,8 +441,9 @@ span {
 
 .hero-buttons {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     margin-bottom: 40px;
+    justify-content: center;
 }
 
 .support-badge {
