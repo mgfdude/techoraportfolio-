@@ -4,6 +4,12 @@ services:
     staticPublishPath: ./
     routes:
       - type: redirect
+        source: /blog/index.html
+        destination: /blog/techora-blog
+      - type: redirect
+        source: /blog/index
+        destination: /blog/techora-blog
+      - type: redirect
         source: /website-cost-kerala
         destination: /blog/website-cost-kerala
       - type: redirect
