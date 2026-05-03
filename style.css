@@ -421,6 +421,13 @@ span {
     text-transform: uppercase;
 }
 
+.subtitle-hero {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
 .title {
     font-size: 3.8rem;
     line-height: 1.1;
@@ -439,11 +446,58 @@ span {
     margin-bottom: 40px;
 }
 
+/* ===== HERO BUTTON FIX ===== */
 .hero-buttons {
     display: flex;
-    gap: 20px;
-    margin-bottom: 40px;
-    justify-content: center;
+    gap: 12px; /* smaller gap */
+    margin: 25px 0 20px;
+    justify-content: flex-start; /* align left (more pro) */
+    flex-wrap: wrap;
+}
+
+/* Make buttons smaller + tighter */
+.hero-buttons .btn {
+    padding: 10px 20px; /* reduced */
+    font-size: 0.9rem;
+    border-radius: 25px;
+}
+
+/* Primary button = strong */
+.hero-buttons .btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 3px 10px rgba(59, 130, 246, 0.4);
+}
+
+/* Secondary button = softer */
+.hero-buttons .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    box-shadow: none;
+}
+
+/* WhatsApp icon spacing fix */
+.hero-buttons .btn-secondary i {
+    margin-right: 6px;
+}
+
+/* Hover refinement */
+.hero-buttons .btn:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+    }
 }
 
 .support-badge {
