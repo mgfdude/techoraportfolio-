@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer - Techora POS</title>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/add-customer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar (Shared) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../assets/images/logo.jpg" alt="Techora POS">
+                    <span>Techora POS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="pos.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>POS</span></a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link"><i class="fas fa-box"></i><span>Products</span></a></li>
+                    <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                    <li class="nav-item"><a href="reports.html" class="nav-link"><i class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../assets/images/logo.jpg" alt="Avatar" class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                    <a href="login.html" class="logout-btn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <!-- Top Bar (Shared) -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <div class="page-title">
+                        <a href="customers.html" class="back-link"><i class="fas fa-arrow-left"></i></a>
+                        <h1>Add New Customer</h1>
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="date-time" id="current-date-time">-- : --</div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <div class="form-container">
+                    <div class="card">
+                        <form id="add-customer-form">
+                            <div class="form-section">
+                                <h3>Basic Information</h3>
+                                <p class="section-desc">Essential details for customer identification.</p>
+                                
+                                <div class="form-group">
+                                    <label for="name">Full Name</label>
+                                    <input type="text" id="name" name="name" placeholder="e.g. John Doe" required>
+                                    <span class="error-msg" id="name-error"></span>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                                        <span class="error-msg" id="email-error"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+                                        <span class="error-msg" id="phone-error"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <h3>Shipping Address <span class="optional">(Optional)</span></h3>
+                                <p class="section-desc">Default address for deliveries.</p>
+                                
+                                <div class="form-group">
+                                    <label for="house">House/Building No.</label>
+                                    <input type="text" id="house" name="house" placeholder="Apt 4B">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="street">Street Name</label>
+                                    <input type="text" id="street" name="street" placeholder="Park Avenue">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="city">City</label>
+                                        <input type="text" id="city" name="city" placeholder="New York">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State</label>
+                                        <input type="text" id="state" name="state" placeholder="NY">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zip">Pin Code</label>
+                                        <input type="text" id="zip" name="zip" placeholder="10001">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="window.location.href='customers.html'">Cancel</button>
+                                <button type="submit" class="btn-primary" id="submit-btn">Save Customer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/add-customer.js"></script>
+</body>
+</html>

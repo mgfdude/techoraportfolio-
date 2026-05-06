@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Techora POS</title>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/checkout.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar (Shared) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../assets/images/logo.jpg" alt="Techora POS">
+                    <span>Techora POS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="pos.html" class="nav-link"><i
+                                class="fas fa-shopping-cart"></i><span>POS</span></a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link"><i
+                                class="fas fa-box"></i><span>Products</span></a></li>
+                    <li class="nav-item"><a href="customers.html" class="nav-link"><i
+                                class="fas fa-users"></i><span>Customers</span></a></li>
+                    <li class="nav-item"><a href="reports.html" class="nav-link"><i
+                                class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link"><i
+                                class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../assets/images/logo.jpg" alt="Avatar"
+                        class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                    <a href="login.html" class="logout-btn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <button class="btn-back" onclick="window.location.href='pos.html'">
+                        <i class="fas fa-arrow-left"></i> Back to POS
+                    </button>
+                    <h1 style="margin-left: 20px;">Complete Order</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="date-time" id="current-date-time">-- : --</div>
+                </div>
+            </header>
+
+            <main class="content-area checkout-layout">
+                <!-- Customer Details Form -->
+                <div class="checkout-form-section">
+                    <div class="card">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <h3>Customer Information</h3>
+                            <span id="sync-indicator" class="sync-status hidden"><i class="fas fa-check-circle"></i>
+                                Synced</span>
+                        </div>
+                        <p class="section-desc">Enter customer details to finalize the transaction.</p>
+
+                        <form id="checkout-form">
+                            <div class="form-group" style="position: relative;">
+                                <label for="cust-name">Full Name</label>
+                                <input type="text" id="cust-name" required placeholder="Enter customer name"
+                                    autocomplete="off">
+                                <div id="name-suggestions" class="suggestions-list"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cust-phone">Phone Number</label>
+                                    <input type="tel" id="cust-phone" required placeholder="123-456-7890">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cust-email">Email (Optional)</label>
+                                    <input type="email" id="cust-email" placeholder="john@example.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cust-house">House/Building No.</label>
+                                    <input type="text" id="cust-house" placeholder="e.g. Apt 4B">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cust-street">Street Name (Optional)</label>
+                                    <input type="text" id="cust-street" placeholder="e.g. Park Avenue">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cust-city">City (Optional)</label>
+                                    <input type="text" id="cust-city" placeholder="e.g. New York">
+                                </div>
+                                <div class="form-group" style="position: relative;">
+                                    <label for="cust-state">State (Optional)</label>
+                                    <div class="custom-select-container" id="state-select-container">
+                                        <input type="text" id="cust-state" readonly placeholder="Select State"
+                                            class="custom-select-input">
+                                        <i class="fas fa-chevron-down dropdown-icon"></i>
+                                        <div id="state-dropdown-list" class="suggestions-list">
+                                            <div class="suggestion-header">Southern India</div>
+                                            <div class="suggestion-item" data-value="Kerala">Kerala</div>
+                                            <div class="suggestion-item" data-value="Karnataka">Karnataka</div>
+                                            <div class="suggestion-item" data-value="Tamil Nadu">Tamil Nadu</div>
+                                            <div class="suggestion-item" data-value="Telangana">Telangana</div>
+                                            <div class="suggestion-item" data-value="Andhra Pradesh">Andhra Pradesh
+                                            </div>
+
+                                            <div class="suggestion-header">All Other States</div>
+                                            <div class="suggestion-item" data-value="Arunachal Pradesh">Arunachal
+                                                Pradesh</div>
+                                            <div class="suggestion-item" data-value="Assam">Assam</div>
+                                            <div class="suggestion-item" data-value="Bihar">Bihar</div>
+                                            <div class="suggestion-item" data-value="Chhattisgarh">Chhattisgarh</div>
+                                            <div class="suggestion-item" data-value="Goa">Goa</div>
+                                            <div class="suggestion-item" data-value="Gujarat">Gujarat</div>
+                                            <div class="suggestion-item" data-value="Haryana">Haryana</div>
+                                            <div class="suggestion-item" data-value="Himachal Pradesh">Himachal Pradesh
+                                            </div>
+                                            <div class="suggestion-item" data-value="Jharkhand">Jharkhand</div>
+                                            <div class="suggestion-item" data-value="Madhya Pradesh">Madhya Pradesh
+                                            </div>
+                                            <div class="suggestion-item" data-value="Maharashtra">Maharashtra</div>
+                                            <div class="suggestion-item" data-value="Manipur">Manipur</div>
+                                            <div class="suggestion-item" data-value="Meghalaya">Meghalaya</div>
+                                            <div class="suggestion-item" data-value="Mizoram">Mizoram</div>
+                                            <div class="suggestion-item" data-value="Nagaland">Nagaland</div>
+                                            <div class="suggestion-item" data-value="Odisha">Odisha</div>
+                                            <div class="suggestion-item" data-value="Punjab">Punjab</div>
+                                            <div class="suggestion-item" data-value="Rajasthan">Rajasthan</div>
+                                            <div class="suggestion-item" data-value="Sikkim">Sikkim</div>
+                                            <div class="suggestion-item" data-value="Tripura">Tripura</div>
+                                            <div class="suggestion-item" data-value="Uttar Pradesh">Uttar Pradesh</div>
+                                            <div class="suggestion-item" data-value="Uttarakhand">Uttarakhand</div>
+                                            <div class="suggestion-item" data-value="West Bengal">West Bengal</div>
+
+                                            <div class="suggestion-header">Union Territories</div>
+                                            <div class="suggestion-item" data-value="Andaman and Nicobar Islands">
+                                                Andaman and Nicobar Islands</div>
+                                            <div class="suggestion-item" data-value="Chandigarh">Chandigarh</div>
+                                            <div class="suggestion-item"
+                                                data-value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar
+                                                Haveli and Daman and Diu</div>
+                                            <div class="suggestion-item" data-value="Delhi">Delhi</div>
+                                            <div class="suggestion-item" data-value="Jammu and Kashmir">Jammu and
+                                                Kashmir</div>
+                                            <div class="suggestion-item" data-value="Ladakh">Ladakh</div>
+                                            <div class="suggestion-item" data-value="Lakshadweep">Lakshadweep</div>
+                                            <div class="suggestion-item" data-value="Puducherry">Puducherry</div>
+                                            <div class="suggestion-item" data-value="Other">Other</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cust-zip">Pin Code (Optional)</label>
+                                    <input type="text" id="cust-zip" placeholder="10001">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-notes">Order Notes</label>
+                                <textarea id="order-notes" rows="2"
+                                    placeholder="Any special instructions..."></textarea>
+                            </div>
+
+                            <div class="payment-selection">
+                                <h4>Select Payment Method</h4>
+                                <div class="payment-options">
+                                    <button type="button" class="payment-btn active" data-method="Cash">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                        <span>Cash</span>
+                                    </button>
+                                    <button type="button" class="payment-btn" data-method="Card">
+                                        <i class="fas fa-credit-card"></i>
+                                        <span>Card</span>
+                                    </button>
+                                    <button type="button" class="payment-btn" data-method="UPI">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>UPI</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group discount-group">
+                                <label for="order-discount">Apply Discount (%)</label>
+                                <div class="input-wrapper">
+                                    <input type="number" id="order-discount" min="0" max="100" placeholder="0" value="0"
+                                        style="padding-left: 16px !important;">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary full-width btn-lg" id="finalize-btn">
+                                Complete Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary-section">
+                    <div class="card">
+                        <h3>Order Summary</h3>
+                        <div class="summary-items" id="summary-items">
+                            <!-- Items loaded via JS -->
+                        </div>
+                        <div class="summary-totals">
+                            <div class="total-row">
+                                <span>Subtotal</span>
+                                <span id="summary-subtotal">$0.00</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Discount</span>
+                                <span id="summary-discount">-$0.00</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Tax</span>
+                                <span id="summary-tax">$0.00</span>
+                            </div>
+                            <div class="total-divider"></div>
+                            <div class="total-row grand-total">
+                                <span>Total Payable</span>
+                                <span id="summary-total">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div id="success-modal" class="modal hidden">
+            <div class="success-content">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Order Successful!</h2>
+                <p>Transaction has been completed and recorded.</p>
+                <div class="thermal-receipt" id="thermal-receipt">
+                    <div class="receipt-logo-container" id="receipt-logo-container" style="display: none;">
+                        <img id="receipt-logo" src="" alt="Store Logo">
+                    </div>
+                    <div class="receipt-header">
+                        <h2 id="receipt-store-name">Visionary Eyewear</h2>
+                        <p id="receipt-store-address">123 Style Avenue, Fashion City</p>
+                        <p id="receipt-store-phone">Tel: +1 (555) 012-3456</p>
+                        <p id="receipt-store-gst" style="display: none;">GSTIN: ----------</p>
+                    </div>
+
+                    <div class="receipt-info">
+                        <div class="receipt-row"><span>Order:</span> <span id="receipt-id">#-----</span></div>
+                        <div class="receipt-row"><span>Date:</span> <span id="receipt-date">--/--/----</span></div>
+                        <div class="receipt-row"><span>Method:</span> <span id="receipt-method">Cash</span></div>
+                        <div class="receipt-row"><span>Customer:</span> <span id="receipt-customer">Guest</span></div>
+                    </div>
+
+                    <div class="receipt-divider"></div>
+
+                    <div class="receipt-items-list" id="receipt-items-list">
+                        <!-- Items populated by JS -->
+                    </div>
+
+                    <div class="receipt-divider"></div>
+
+                    <div class="receipt-totals">
+                        <div class="receipt-row"><span>Subtotal:</span> <span id="receipt-subtotal">$0.00</span></div>
+                        <div class="receipt-row"><span>Discount:</span> <span id="receipt-discount">-$0.00</span></div>
+                        <div class="receipt-row"><span>Tax:</span> <span id="receipt-tax">$0.00</span></div>
+                        <div class="receipt-row total"><span>TOTAL:</span> <span id="receipt-total-val">$0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="receipt-footer">
+                        <p>Thank you for your purchase!</p>
+                        <p>Please visit again.</p>
+                        <div class="receipt-barcode">made by <a href="https://techora.in" target="_blank" style="color: inherit; text-decoration: underline;">techora.in</a></div>
+                    </div>
+                </div>
+                <button class="btn-primary full-width" onclick="window.location.href='pos.html'">
+                    Start New Order
+                </button>
+            </div>
+        </div>
+
+        <!-- UPI QR Code Modal -->
+        <div id="upi-modal" class="modal hidden">
+            <div class="upi-modal-content">
+                <div class="upi-header">
+                    <img src="../assets/images/google pay.png" alt="Google Pay" class="upi-provider-logo">
+                    <h3>Scan to Pay</h3>
+                </div>
+                <div class="qr-container">
+                    <img src="../assets/images/google pay.png" alt="QR Code" class="qr-image" id="upi-qr-image">
+                    <div class="qr-amount-display" id="upi-amount-display">$0.00</div>
+                </div>
+                <p class="upi-instruction">Please scan the QR code using Google Pay or any UPI app to complete the
+                    payment.</p>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="button" class="btn-primary" id="upi-ok-btn">OK, I've Paid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/checkout.js"></script>
+</body>
+
+</html>

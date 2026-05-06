@@ -1,0 +1,13 @@
+{
+  "name": "techora-pos",
+  "version": "1.0.0",
+  "description": "Premium POS System",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx -y serve .",
+    "dev": "npx -y live-server ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

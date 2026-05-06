@@ -1,0 +1,142 @@
+/* add-customer.css */
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.back-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    background-color: var(--border-color);
+    transform: translateX(-3px);
+}
+
+.page-title h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.form-section {
+    margin-bottom: 40px;
+}
+
+.form-section h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.form-section .optional {
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.section-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-row .form-group:only-child {
+    grid-column: span 2;
+}
+
+/* Three column row for address */
+.form-row:has(#city) {
+    grid-template-columns: 2fr 1fr 1fr;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    height: 52px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    border: 1.5px solid var(--border-color);
+    background-color: var(--bg-color);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: white;
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-primary, .btn-secondary {
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.error-msg {
+    color: var(--danger-color);
+    font-size: 0.75rem;
+    margin-top: 4px;
+    height: 14px;
+}
+
+.form-group.error input {
+    border-color: var(--danger-color);
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+    }
+}

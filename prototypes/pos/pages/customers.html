@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - Techora POS</title>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/customers.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../assets/images/logo.jpg" alt="Techora POS">
+                    <span>Techora POS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="pos.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>POS</span></a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link"><i class="fas fa-box"></i><span>Products</span></a></li>
+                    <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                    <li class="nav-item"><a href="reports.html" class="nav-link"><i class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../assets/images/logo.jpg" alt="Avatar" class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                    <a href="login.html" class="logout-btn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="global-search" placeholder="Search customers...">
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="date-time" id="current-date-time">-- : --</div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <div class="section-header">
+                    <div class="header-text">
+                        <h1>Customer Directory</h1>
+                        <p>Keep track of your loyal customers and their spending.</p>
+                    </div>
+                    <div class="header-actions" style="display: flex; gap: 16px; align-items: center;">
+                        <div class="panel-search-wrapper">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="customer-search" class="panel-search-input" placeholder="Search name or phone number...">
+                        </div>
+                        <button class="btn-secondary" onclick="exportCustomers()">
+                            <i class="fas fa-file-export"></i> Export CSV
+                        </button>
+                        <a href="add-customer.html" class="btn-primary" style="text-decoration: none;">
+                            <i class="fas fa-plus"></i> Add Customer
+                        </a>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Total Orders</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customers-table-body">
+                            <!-- Customers loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-overlay" class="modal-overlay">
+        <!-- Customer Profile/History Modal -->
+        <div id="history-modal" class="modal hidden">
+            <div class="modal-header">
+                <h2>Customer Profile</h2>
+                <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="customer-profile-card">
+                    <div class="profile-main-info">
+                        <div class="profile-avatar" id="hist-avatar">JD</div>
+                        <div class="profile-details">
+                            <h3 id="hist-name">Customer Name</h3>
+                            <p id="hist-contact">
+                                <i class="far fa-envelope"></i> <span id="hist-email">email@example.com</span>
+                                <span style="margin: 0 8px;">•</span>
+                                <i class="fas fa-phone-alt"></i> <span id="hist-phone">123-456-7890</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="profile-grid">
+                        <div class="info-block">
+                            <h4><i class="fas fa-map-marker-alt"></i> Latest Address</h4>
+                            <p id="hist-address">No address recorded yet.</p>
+                        </div>
+                        <div class="info-block">
+                            <h4><i class="fas fa-shopping-bag"></i> Order History</h4>
+                            <div id="history-list" class="history-list">
+                                <!-- Loaded via JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Detail Modal -->
+        <div id="order-detail-modal" class="modal hidden">
+            <div class="modal-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <button class="back-btn" onclick="openModal('history-modal')"><i class="fas fa-arrow-left"></i></button>
+                    <div>
+                        <h2 id="detail-order-id">#00000</h2>
+                        <p id="detail-order-date" style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px;">Date: --</p>
+                    </div>
+                </div>
+                <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="order-summary-content">
+                    <div class="detail-section">
+                        <h4>Items</h4>
+                        <div id="detail-items-list" class="detail-items-list">
+                            <!-- Loaded via JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="detail-totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="detail-subtotal">₹0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Discount</span>
+                            <span id="detail-discount">₹0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Tax</span>
+                            <span id="detail-tax">₹0.00</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Grand Total</span>
+                            <span id="detail-total">₹0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-section" id="detail-address-section">
+                        <h4>Delivery Address</h4>
+                        <p id="detail-address" style="line-height: 1.5; color: var(--text-secondary);">No address available</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="printCurrentOrder()">
+                    <i class="fas fa-print"></i> Print Receipt
+                </button>
+                <button class="btn-primary" onclick="openModal('history-modal')">Back to Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/customers.js"></script>
+</body>
+</html>

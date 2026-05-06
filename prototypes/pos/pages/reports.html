@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Techora POS</title>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/reports.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../assets/images/logo.jpg" alt="Techora POS">
+                    <span>Techora POS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="pos.html" class="nav-link"><i
+                                class="fas fa-shopping-cart"></i><span>POS</span></a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link"><i
+                                class="fas fa-box"></i><span>Products</span></a></li>
+                    <li class="nav-item"><a href="customers.html" class="nav-link"><i
+                                class="fas fa-users"></i><span>Customers</span></a></li>
+                    <li class="nav-item"><a href="reports.html" class="nav-link active"><i
+                                class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link"><i
+                                class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../assets/images/logo.jpg" alt="Avatar"
+                        class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                    <a href="login.html" class="logout-btn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <!-- Print-Only Header -->
+            <div class="print-header">
+                <div class="print-logo">
+                    <img src="../assets/images/logo.jpg" alt="Logo" id="print-logo-img">
+                    <div class="print-store-info">
+                        <h1 id="print-store-name">Techora POS</h1>
+                        <p id="print-store-details">Made by <a href="https://techora.in" target="_blank" style="color: inherit; text-decoration: underline;">https://techora.in</a></p>
+                    </div>
+                </div>
+                <div class="print-report-info">
+                    <h2 id="print-report-title">Report Summary</h2>
+                    <p id="print-report-date">Date: May 05, 2026</p>
+                    <p id="print-report-gst" style="display:none;"></p>
+                </div>
+            </div>
+
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h1>Reports & Analytics</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="date-time" id="current-date-time">-- : --</div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <!-- Global Filter Bar + Export Actions -->
+                <div class="global-filter-bar">
+                    <div class="filter-controls">
+                        <div class="filter-item">
+                            <label>Date Range</label>
+                            <div class="custom-dropdown" id="date-range-dropdown">
+                                <div class="dropdown-trigger">
+                                    <i class="far fa-calendar-alt"></i>
+                                    <span id="selected-date-range">This Month</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-option" data-value="today">Today</div>
+                                    <div class="dropdown-option" data-value="week">This Week</div>
+                                    <div class="dropdown-option active" data-value="month">This Month</div>
+                                    <div class="dropdown-option" data-value="year">This Year</div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-option" data-value="custom">Custom Range</div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="date-range" value="month">
+                        </div>
+
+                        <div class="filter-item hidden" id="custom-date-inputs">
+                            <div class="date-input-group">
+                                <div class="date-field">
+                                    <label>Start Date</label>
+                                    <input type="date" id="start-date">
+                                </div>
+                                <div class="date-field">
+                                    <label>End Date</label>
+                                    <input type="date" id="end-date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="filter-item">
+                            <label>Payment Method</label>
+                            <div class="custom-dropdown" id="payment-method-dropdown">
+                                <div class="dropdown-trigger">
+                                    <i class="fas fa-credit-card" id="payment-method-icon"></i>
+                                    <span id="selected-payment-method">All Methods</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <div class="dropdown-option active" data-value="all" data-icon="fas fa-credit-card">
+                                        <i class="fas fa-credit-card"></i> All Methods
+                                    </div>
+                                    <div class="dropdown-option" data-value="Cash" data-icon="fas fa-money-bill-wave">
+                                        <i class="fas fa-money-bill-wave"></i> Cash
+                                    </div>
+                                    <div class="dropdown-option" data-value="UPI" data-icon="fas fa-mobile-alt">
+                                        <i class="fas fa-mobile-alt"></i> UPI
+                                    </div>
+                                    <div class="dropdown-option" data-value="Card" data-icon="fas fa-credit-card">
+                                        <i class="fas fa-credit-card"></i> Card
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="payment-method-filter" value="all">
+                        </div>
+                        <button class="btn-primary" id="apply-filters">
+                            <i class="fas fa-filter"></i> Apply Filter
+                        </button>
+                    </div>
+
+                    <div id="export-actions" class="export-actions">
+                        <!-- Populated via JS based on active tab -->
+                    </div>
+                </div>
+
+                <!-- Tab Navigation -->
+                <nav class="report-tabs">
+                    <button class="report-tab active" data-target="sales">Sales</button>
+                    <button class="report-tab" data-target="customers">Customers</button>
+                    <button class="report-tab" data-target="payments">Payments</button>
+                    <button class="report-tab" data-target="inventory">Inventory</button>
+                    <button class="report-tab" data-target="tax">Tax (GST)</button>
+                </nav>
+
+                <!-- Report Content Area -->
+                <div class="report-content">
+
+                    <!-- 1. SALES REPORT SECTION -->
+                    <section id="sales-section" class="report-section active">
+                        <div class="section-header">
+                            <div class="header-left">
+                                <h2>Daily Sales Report</h2>
+                                <p>Comprehensive breakdown of financial performance and daily trends.</p>
+                            </div>
+                            <div class="header-right">
+                                <button class="btn-outline" onclick="window.location.href='sales-report.html'">
+                                    <i class="fas fa-external-link-alt"></i> Advanced View
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card" title="Total amount after discounts and taxes">
+                                <div class="stat-icon blue"><i class="fas fa-wallet"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total Revenue</h3>
+                                    <p class="stat-value" id="total-revenue-val">₹0.00</p>
+                                </div>
+                            </div>
+                            <div class="stat-card" title="Total number of completed orders">
+                                <div class="stat-icon green"><i class="fas fa-shopping-bag"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total Orders</h3>
+                                    <p class="stat-value" id="total-orders-val">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card" title="Total GST collected">
+                                <div class="stat-icon red"><i class="fas fa-file-invoice"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total Tax</h3>
+                                    <p class="stat-value" id="total-tax-val">₹0.00</p>
+                                </div>
+                            </div>
+                            <div class="stat-card" title="Total discounts applied to orders">
+                                <div class="stat-icon orange"><i class="fas fa-tags"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total Discount</h3>
+                                    <p class="stat-value" id="total-discount-val">₹0.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h3>Revenue Trend (Net Sales)</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="salesChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-container mt-4">
+                            <table class="data-table" id="sales-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Orders</th>
+                                        <th>Gross Sales</th>
+                                        <th>Discount</th>
+                                        <th>Tax</th>
+                                        <th>Net Sales</th>
+                                        <th>Cash</th>
+                                        <th>UPI</th>
+                                        <th>Card</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sales-table-body">
+                                    <!-- Skeletons loaded via JS -->
+                                </tbody>
+                            </table>
+                            <div id="sales-empty-state" class="empty-state hidden">
+                                <i class="fas fa-folder-open"></i>
+                                <p>No sales data found for the selected range.</p>
+                            </div>
+                            <div class="load-more-container" id="sales-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('sales')">
+                                    <span id="sales-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2. CUSTOMERS REPORT SECTION -->
+                    <section id="customers-section" class="report-section">
+                        <div class="section-header">
+                            <div class="header-left">
+                                <h2>Customer Analytics</h2>
+                                <p>Analysis of customer behavior, spending habits, and loyalty.</p>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total Customers</h3>
+                                    <p class="stat-value" id="total-cust-val">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon green"><i class="fas fa-crown"></i></div>
+                                <div class="stat-info">
+                                    <h3>Top Customer Spend</h3>
+                                    <p class="stat-value" id="top-spend-val">₹0.00</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon orange"><i class="fas fa-percentage"></i></div>
+                                <div class="stat-info">
+                                    <h3>Avg Orders/Cust</h3>
+                                    <p class="stat-value" id="avg-orders-val">0</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h3>Top 5 High-Spending Customers</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="customerBarChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-container mt-4">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Total Orders</th>
+                                        <th>Total Spent</th>
+                                        <th>Last Visit</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customers-table-body">
+                                    <!-- Loaded via JS -->
+                                </tbody>
+                            </table>
+                            <div id="cust-empty-state" class="empty-state hidden">
+                                <i class="fas fa-user-slash"></i>
+                                <p>No customer records found.</p>
+                            </div>
+                            <div class="load-more-container" id="customers-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('customers')">
+                                    <span id="customers-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 3. PAYMENTS REPORT SECTION -->
+                    <section id="payments-section" class="report-section">
+                        <div class="section-header">
+                            <div class="header-left">
+                                <h2>Payment Distribution</h2>
+                                <p>Breakdown of payment methods and transaction volumes.</p>
+                            </div>
+                        </div>
+
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon green"><i class="fas fa-money-bill-wave"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total Cash</h3>
+                                    <p class="stat-value" id="total-cash-val">₹0.00</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon blue"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total UPI</h3>
+                                    <p class="stat-value" id="total-upi-val">₹0.00</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon orange"><i class="fas fa-credit-card"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total Card</h3>
+                                    <p class="stat-value" id="total-card-val">₹0.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="charts-container">
+                            <div class="chart-card">
+                                <h3>Payment Method Share</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="paymentPieChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-container mt-4">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Payment Type</th>
+                                        <th>Transactions</th>
+                                        <th>Total Collected</th>
+                                        <th>Share (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="payments-table-body">
+                                    <!-- Loaded via JS -->
+                                </tbody>
+                            </table>
+                            <div class="load-more-container" id="payments-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('payments')">
+                                    <span id="payments-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 4. INVENTORY REPORT SECTION -->
+                    <section id="inventory-section" class="report-section">
+                        <div class="section-header">
+                            <h2>Inventory Status</h2>
+                            <p>Overview of current stock levels and item health.</p>
+                        </div>
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Category</th>
+                                        <th>Current Stock</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventory-table-body">
+                                    <!-- Loaded via JS -->
+                                </tbody>
+                            </table>
+                            <div class="load-more-container" id="inventory-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('inventory')">
+                                    <span id="inventory-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 5. TAX (GST) REPORT SECTION -->
+                    <!-- ONLY GST SECTION MODIFIED — REST SAME -->
+
+                    <!-- 5. TAX (GST) REPORT SECTION -->
+                    <section id="tax-section" class="report-section">
+                        <div class="section-header">
+                            <div class="header-left">
+                                <h2>GST Compliance Report</h2>
+                                <p>Monthly summary of GST collections, taxable values, and exempt sales.</p>
+                                <p id="report-store-gst"
+                                    style="margin-top: 4px; font-weight: 600; color: var(--primary-color); display: none;">
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 🔹 SUMMARY CARDS -->
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon red"><i class="fas fa-file-invoice"></i></div>
+                                <div class="stat-info">
+                                    <h3>Total GST</h3>
+                                    <p class="stat-value" id="gst-total-val">₹0.00</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h3>CGST</h3>
+                                    <p class="stat-value" id="cgst-val">₹0.00</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h3>SGST</h3>
+                                    <p class="stat-value" id="sgst-val">₹0.00</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h3>IGST</h3>
+                                    <p class="stat-value" id="igst-val">₹0.00</p>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-info">
+                                    <h3>Exempt Sales</h3>
+                                    <p class="stat-value" id="exempt-val">₹0.00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 🔹 TAX RATE BREAKDOWN -->
+                        <div class="table-container">
+                            <h3>Tax Rate Breakdown</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tax Rate</th>
+                                        <th>Taxable Value</th>
+                                        <th>CGST</th>
+                                        <th>SGST</th>
+                                        <th>Total GST</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tax-breakdown-body">
+                                     <!-- JS DATA -->
+                                </tbody>
+                            </table>
+                            <div class="load-more-container" id="taxBreakdown-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('taxBreakdown')">
+                                    <span id="taxBreakdown-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 🔹 INVOICE REPORT -->
+                        <div class="table-container">
+                            <h3>Invoice GST Report</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice ID</th>
+                                        <th>Customer</th>
+                                        <th>Taxable Amount</th>
+                                        <th>Tax (GST)</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tax-table-body">
+                                    <!-- JS DATA -->
+                                </tbody>
+                            </table>
+                            <div class="load-more-container" id="tax-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('tax')">
+                                    <span id="tax-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 🔹 HSN SUMMARY -->
+                        <div class="table-container">
+                            <h3>HSN Summary</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>HSN</th>
+                                        <th>Description</th>
+                                        <th>Qty</th>
+                                        <th>Value</th>
+                                        <th>GST</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="hsn-body">
+                                     <!-- JS DATA -->
+                                </tbody>
+                            </table>
+                            <div class="load-more-container" id="hsnSummary-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('hsnSummary')">
+                                    <span id="hsnSummary-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 🔹 EXEMPT SALES TABLE -->
+                        <div class="table-container">
+                            <h3>Exempt Sales</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="exempt-body">
+                                     <!-- JS DATA -->
+                                </tbody>
+                            </table>
+                            <div class="load-more-container" id="exemptSales-load-more-container">
+                                <button class="btn-load-more" onclick="toggleLoadMore('exemptSales')">
+                                    <span id="exemptSales-load-more-text">See More</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <!-- Print-Only Footer -->
+            <div class="print-footer">
+                <p>© 2026 Techora POS - Made by <a href="https://techora.in" target="_blank" style="color: inherit; text-decoration: underline;">https://techora.in</a></p>
+                <p>Confidential Business Report</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/reports.js"></script>
+</body>
+
+</html>

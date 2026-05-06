@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Techora POS</title>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/settings.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../assets/images/logo.jpg" alt="Techora POS">
+                    <span>Techora POS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="pos.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>POS</span></a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link"><i class="fas fa-box"></i><span>Products</span></a></li>
+                    <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                    <li class="nav-item"><a href="reports.html" class="nav-link"><i class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                    <li class="nav-item active"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../assets/images/logo.jpg" alt="Avatar" class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                    <a href="login.html" class="logout-btn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <h1>Settings</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="date-time" id="current-date-time">-- : --</div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <!-- Settings Tabs -->
+                <nav class="settings-tabs">
+                    <button class="tab-btn active" data-target="store-panel">
+                        <i class="fas fa-store"></i> Store Config
+                    </button>
+                    <button class="tab-btn" data-target="bank-panel">
+                        <i class="fas fa-university"></i> Bank Config
+                    </button>
+                    <button class="tab-btn" data-target="security-panel">
+                        <i class="fas fa-shield-alt"></i> Account Security
+                    </button>
+                </nav>
+
+                <div class="settings-container">
+                    
+                    <!-- 1. STORE CONFIG PANEL -->
+                    <div id="store-panel" class="settings-panel active">
+                        <div class="settings-section">
+                            <div class="section-header">
+                                <h2>Store Configuration</h2>
+                                <p>Manage your business identity, contact details, and regional tax settings.</p>
+                            </div>
+                            
+                            <!-- Grid for Identity and Contact -->
+                            <div class="settings-grid">
+                                <!-- Sub-section: Business Identity -->
+                                <div class="settings-group">
+                                    <div class="group-header">
+                                        <i class="fas fa-id-card"></i>
+                                        <h3>Business Identity</h3>
+                                    </div>
+                                    <div class="settings-card">
+                                        <div class="form-group logo-upload-group">
+                                            <label><i class="fas fa-image"></i> Shop Logo</label>
+                                            <div class="logo-preview-container">
+                                                <img id="logo-preview" src="../assets/images/logo.jpg" alt="Logo Preview">
+                                                <div class="upload-controls">
+                                                    <input type="file" id="set-store-logo" accept="image/*" hidden>
+                                                    <button type="button" class="btn-outline-sm" onclick="document.getElementById('set-store-logo').click()">
+                                                        <i class="fas fa-upload"></i> Change Logo
+                                                    </button>
+                                                    <small class="helper-text">Recommended: Square PNG/JPG</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i class="fas fa-signature"></i> Store Name</label>
+                                            <input type="text" id="set-store-name" placeholder="e.g. Visionary Eyewear">
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i class="fas fa-envelope"></i> Admin Email (For OTP Reset)</label>
+                                            <input type="email" id="set-admin-email" placeholder="admin@example.com">
+                                            <small class="helper-text">This email is used for critical security resets.</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="settings-group">
+                                    <div class="group-header">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <h3>Contact Information</h3>
+                                    </div>
+                                    <div class="settings-card">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-building"></i> Store Address (For Receipt)</label>
+                                            <input type="text" id="set-store-address" placeholder="e.g. 123 Main St, City, State">
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i class="fas fa-phone-alt"></i> Store Phone Number</label>
+                                            <input type="tel" id="set-store-phone" placeholder="e.g. +1 (555) 000-0000">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Separate Grid for Regional & Tax -->
+                            <div class="settings-grid full-width">
+                                <!-- Sub-section: Regional & Tax -->
+                                <div class="settings-group">
+                                    <div class="group-header">
+                                        <i class="fas fa-globe"></i>
+                                        <h3>Regional & Tax</h3>
+                                    </div>
+                                    <div class="settings-card">
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label><i class="fas fa-coins"></i> Currency Symbol</label>
+                                                <input type="hidden" id="set-currency" value="₹">
+                                                <div class="settings-custom-dropdown" id="currency-dropdown">
+                                                    <div class="scd-trigger" id="currency-trigger">
+                                                        <span id="currency-display">₹ (INR - Rupee)</span>
+                                                        <i class="fas fa-chevron-down scd-arrow"></i>
+                                                    </div>
+                                                    <div class="scd-menu" id="currency-menu">
+                                                        <div class="scd-option" data-value="$" data-label="$ (USD - Dollar)">$ (USD - Dollar)</div>
+                                                        <div class="scd-option active" data-value="₹" data-label="₹ (INR - Rupee)">₹ (INR - Rupee)</div>
+                                                        <div class="scd-option" data-value="€" data-label="€ (EUR - Euro)">€ (EUR - Euro)</div>
+                                                        <div class="scd-option" data-value="£" data-label="£ (GBP - Pound)">£ (GBP - Pound)</div>
+                                                        <div class="scd-option" data-value="¥" data-label="¥ (JPY/CNY - Yen/Yuan)">¥ (JPY/CNY - Yen/Yuan)</div>
+                                                        <div class="scd-option" data-value="₨" data-label="₨ (PKR/NPR - Rupee)">₨ (PKR/NPR - Rupee)</div>
+                                                        <div class="scd-option" data-value="AED" data-label="AED (UAE Dirham)">AED (UAE Dirham)</div>
+                                                        <div class="scd-option" data-value="SAR" data-label="SAR (Saudi Riyal)">SAR (Saudi Riyal)</div>
+                                                        <div class="scd-option" data-value="৳" data-label="৳ (BDT - Taka)">৳ (BDT - Taka)</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label><i class="fas fa-percent"></i> Tax Rate (%)</label>
+                                                <input type="number" id="set-tax-rate" step="0.1" placeholder="8.0">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i class="fas fa-file-invoice"></i> Store GST Number</label>
+                                            <input type="text" id="set-store-gst" placeholder="e.g. 22AAAAA0000A1Z5">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions-fixed">
+                                <button class="btn-primary" onclick="saveSettings()">
+                                    <i class="fas fa-save"></i> Save Configuration
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. BANK CONFIG PANEL -->
+                    <div id="bank-panel" class="settings-panel">
+                        <div class="settings-section">
+                            <div class="section-header">
+                                <h2>Bank Account Details</h2>
+                                <p>Manage your bank details for payments, records, and wire transfers.</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <div class="group-header">
+                                    <i class="fas fa-university"></i>
+                                    <h3>Bank & Payment Configuration</h3>
+                                </div>
+                                <div class="settings-card">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-piggy-bank"></i> Bank Name</label>
+                                            <input type="hidden" id="set-bank-name" value="">
+                                            <div class="settings-custom-dropdown" id="bank-name-dropdown">
+                                                <div class="scd-trigger" id="bank-trigger">
+                                                    <i class="fas fa-university scd-icon"></i>
+                                                    <span id="bank-display">Select Bank</span>
+                                                    <i class="fas fa-chevron-down scd-arrow"></i>
+                                                </div>
+                                                <div class="scd-menu" id="bank-menu">
+                                                    <div class="scd-option placeholder" data-value="" data-label="Select Bank">Select Bank</div>
+                                                    <div class="scd-divider"></div>
+                                                    <div class="scd-option" data-value="Kerala Gramin Bank" data-label="Kerala Gramin Bank">Kerala Gramin Bank</div>
+                                                    <div class="scd-option" data-value="State Bank of India" data-label="State Bank of India (SBI)">State Bank of India (SBI)</div>
+                                                    <div class="scd-option" data-value="Federal Bank" data-label="Federal Bank">Federal Bank</div>
+                                                    <div class="scd-option" data-value="South Indian Bank" data-label="South Indian Bank">South Indian Bank</div>
+                                                    <div class="scd-option" data-value="Kerala Bank" data-label="Kerala Bank (KSCB)">Kerala Bank (KSCB)</div>
+                                                    <div class="scd-option" data-value="Catholic Syrian Bank" data-label="CSB Bank (Catholic Syrian Bank)">CSB Bank (Catholic Syrian Bank)</div>
+                                                    <div class="scd-option" data-value="Dhanlaxmi Bank" data-label="Dhanlaxmi Bank">Dhanlaxmi Bank</div>
+                                                    <div class="scd-option" data-value="Canara Bank" data-label="Canara Bank">Canara Bank</div>
+                                                    <div class="scd-option" data-value="HDFC Bank" data-label="HDFC Bank">HDFC Bank</div>
+                                                    <div class="scd-option" data-value="ICICI Bank" data-label="ICICI Bank">ICICI Bank</div>
+                                                    <div class="scd-option" data-value="Axis Bank" data-label="Axis Bank">Axis Bank</div>
+                                                    <div class="scd-option" data-value="Other" data-label="Other Bank">Other Bank</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i class="fas fa-user-circle"></i> Account Holder Name</label>
+                                            <input type="text" id="set-acc-holder" placeholder="e.g. John Doe">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-list-ol"></i> Account Number</label>
+                                            <input type="text" id="set-acc-number" placeholder="1234567890">
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i class="fas fa-code-branch"></i> IFSC Code</label>
+                                            <input type="text" id="set-ifsc-code" placeholder="SBIN0001234">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mt-3">
+                                        <label><i class="fas fa-qrcode"></i> Store UPI ID (For QR Payments)</label>
+                                        <input type="text" id="set-store-upi" placeholder="e.g. yourname@upi">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions-fixed">
+                                <button class="btn-primary" onclick="saveSettings()">
+                                    <i class="fas fa-save"></i> Save Bank Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. SECURITY PANEL -->
+                    <div id="security-panel" class="settings-panel">
+                        <div class="settings-section">
+                            <div class="section-header">
+                                <h2>Account Security</h2>
+                                <p>Update your login credentials and secure your administrative access.</p>
+                            </div>
+                            
+                            <div class="settings-group">
+                                <div class="group-header">
+                                    <i class="fas fa-lock"></i>
+                                    <h3>Login Credentials</h3>
+                                </div>
+                                <div class="settings-card">
+                                    <div class="form-group">
+                                        <label><i class="fas fa-user"></i> Login Username</label>
+                                        <input type="text" id="set-username" placeholder="admin">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><i class="fas fa-key"></i> Current (Old) Password</label>
+                                        <div class="password-input-wrapper">
+                                            <input type="password" id="set-password-old" placeholder="Enter current password">
+                                            <button type="button" class="toggle-password" onclick="togglePasswordVisibility('set-password-old')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label><i class="fas fa-plus-circle"></i> New Password</label>
+                                            <div class="password-input-wrapper">
+                                                <input type="password" id="set-password" placeholder="New password">
+                                                <button type="button" class="toggle-password" onclick="togglePasswordVisibility('set-password')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><i class="fas fa-check-double"></i> Confirm Password</label>
+                                            <div class="password-input-wrapper">
+                                                <input type="password" id="set-password-confirm" placeholder="Confirm password">
+                                                <button type="button" class="toggle-password" onclick="togglePasswordVisibility('set-password-confirm')">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions-fixed">
+                                <button class="btn-primary" onclick="saveSecuritySettings()">
+                                    <i class="fas fa-shield-alt"></i> Update Credentials
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/settings.js"></script>
+    <script>
+    // ── Custom Dropdown Logic for Settings ──────────────────────────────────
+    (function () {
+        function initSettingsDropdown(dropdownId, hiddenId, displayId, triggerId) {
+            const dropdown = document.getElementById(dropdownId);
+            const hidden   = document.getElementById(hiddenId);
+            const display  = document.getElementById(displayId);
+            const trigger  = document.getElementById(triggerId) || dropdown.querySelector('.scd-trigger');
+            const menu     = dropdown.querySelector('.scd-menu');
+            const options  = dropdown.querySelectorAll('.scd-option:not(.placeholder)');
+
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const isOpen = dropdown.classList.contains('open');
+                // Close all other dropdowns first
+                document.querySelectorAll('.settings-custom-dropdown.open').forEach(d => d.classList.remove('open'));
+                if (!isOpen) dropdown.classList.add('open');
+            });
+
+            options.forEach(function (opt) {
+                opt.addEventListener('click', function () {
+                    const val   = this.dataset.value;
+                    const label = this.dataset.label;
+                    hidden.value = val;
+                    display.textContent = label;
+                    menu.querySelectorAll('.scd-option').forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    dropdown.classList.remove('open');
+                    // Fire a change event so settings.js can pick it up
+                    hidden.dispatchEvent(new Event('change', { bubbles: true }));
+                });
+            });
+        }
+
+        // Close on outside click
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.settings-custom-dropdown.open').forEach(d => d.classList.remove('open'));
+        });
+
+        // Init both dropdowns
+        initSettingsDropdown('currency-dropdown', 'set-currency', 'currency-display', 'currency-trigger');
+        initSettingsDropdown('bank-name-dropdown', 'set-bank-name', 'bank-display', 'bank-trigger');
+
+        // Patch loadSettings to sync custom dropdowns when values are restored from localStorage
+        const origLoad = window.loadSettings;
+        if (typeof origLoad === 'function') {
+            window.loadSettings = function() {
+                origLoad();
+                syncCustomDropdown('set-currency', 'currency-dropdown', 'currency-display');
+                syncCustomDropdown('set-bank-name', 'bank-name-dropdown', 'bank-display');
+            };
+        }
+
+        function syncCustomDropdown(hiddenId, dropdownId, displayId) {
+            const hidden   = document.getElementById(hiddenId);
+            const dropdown = document.getElementById(dropdownId);
+            const display  = document.getElementById(displayId);
+            if (!hidden || !dropdown || !display) return;
+            const val = hidden.value;
+            if (!val) return;
+            const match = dropdown.querySelector('.scd-option[data-value="' + val + '"]');
+            if (match) {
+                display.textContent = match.dataset.label;
+                dropdown.querySelectorAll('.scd-option').forEach(o => o.classList.remove('active'));
+                match.classList.add('active');
+            }
+        }
+
+        // Also sync after DOM is ready (catches immediate load)
+        document.addEventListener('DOMContentLoaded', function () {
+            syncCustomDropdown('set-currency',  'currency-dropdown',  'currency-display');
+            syncCustomDropdown('set-bank-name', 'bank-name-dropdown', 'bank-display');
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Techora POS</title>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar (Shared) -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="../assets/images/logo.jpg" alt="Techora POS">
+                    <span>Techora POS</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="pos.html" class="nav-link"><i class="fas fa-shopping-cart"></i><span>POS</span></a></li>
+                    <li class="nav-item"><a href="products.html" class="nav-link"><i class="fas fa-box"></i><span>Products</span></a></li>
+                    <li class="nav-item"><a href="customers.html" class="nav-link"><i class="fas fa-users"></i><span>Customers</span></a></li>
+                    <li class="nav-item"><a href="reports.html" class="nav-link"><i class="fas fa-file-alt"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../assets/images/logo.jpg" alt="Avatar" class="avatar">
+                    <div class="user-info">
+                        <span class="user-name">Admin User</span>
+                        <span class="user-role">Manager</span>
+                    </div>
+                    <a href="login.html" class="logout-btn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-wrapper">
+            <!-- Top Bar (Shared) -->
+            <header class="top-bar">
+                <div class="top-bar-left">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="global-search" placeholder="Search products...">
+                    </div>
+                </div>
+                <div class="top-bar-right">
+                    <div class="date-time" id="current-date-time">-- : --</div>
+                </div>
+            </header>
+
+            <main class="content-area">
+                <div class="section-header">
+                    <div class="header-text">
+                        <h1>Product Inventory</h1>
+                        <p>Manage your items, prices and stock levels.</p>
+                    </div>
+                    <div class="header-actions" style="display: flex; gap: 12px;">
+                        <input type="file" id="bulk-import-input" accept=".csv" style="display: none;">
+                        <button class="btn-secondary" onclick="document.getElementById('bulk-import-input').click()">
+                            <i class="fas fa-file-import"></i> Bulk Import (CSV)
+                        </button>
+                        <button class="btn-secondary" onclick="openCategoryModal()">
+                            <i class="fas fa-tags"></i> Manage Categories
+                        </button>
+                        <button class="btn-primary" onclick="openProductModal()">
+                            <i class="fas fa-plus"></i> Add Product
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Barcode</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Products loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay">
+        <!-- Product Modal -->
+        <div id="product-modal" class="modal hidden">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Product</h2>
+                <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="product-form">
+                <input type="hidden" id="p-id">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" id="p-name" required placeholder="e.g. Latte">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="p-category">
+                                <!-- Loaded via JS -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="number" id="p-price" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Stock Quantity</label>
+                            <input type="number" id="p-stock" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tax (%)</label>
+                            <input type="number" id="p-tax" step="0.01" placeholder="e.g. 18" value="0">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Barcode (Optional)</label>
+                        <input type="text" id="p-barcode" placeholder="Scan or enter barcode">
+                    </div>
+                    <div class="form-group">
+                        <label>Product Image</label>
+                        <div class="image-source-tabs">
+                            <button type="button" class="tab-btn active" onclick="switchImageSource('upload')">
+                                <i class="fas fa-upload"></i> Upload
+                            </button>
+                            <button type="button" class="tab-btn" onclick="switchImageSource('url')">
+                                <i class="fas fa-link"></i> URL
+                            </button>
+                        </div>
+                        
+                        <div id="upload-source" class="image-source-content">
+                            <div class="image-upload-container">
+                                <div id="image-preview" class="image-preview">
+                                    <i class="fas fa-image"></i>
+                                    <p>Click to upload</p>
+                                </div>
+                                <input type="file" id="p-image-file" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+
+                        <div id="url-source" class="image-source-content hidden">
+                            <div class="url-input-wrapper">
+                                <input type="url" id="p-image-url" placeholder="https://example.com/image.jpg" class="url-input">
+                                <button type="button" class="btn-secondary" onclick="previewUrlImage()" style="margin-top: 10px; width: 100%;">
+                                    <i class="fas fa-eye"></i> Preview URL Image
+                                </button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="p-image-data">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Category Modal -->
+        <div id="category-modal" class="modal hidden">
+            <div class="modal-header">
+                <h2>Manage Categories</h2>
+                <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="category-form" class="inline-form">
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                        <input type="text" id="cat-name" placeholder="New Category Name" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="height: 52px; border-radius: 12px;">Add</button>
+                </form>
+                
+                <div class="category-list-container" style="margin-top: 24px;">
+                    <ul id="category-list" class="category-manage-list">
+                        <!-- Loaded via JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/products.js"></script>
+</body>
+</html>
