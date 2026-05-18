@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://techora.in/sitemap.xml
+
+Crawl-delay: 2
+
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /admin/
+Disallow: /.git/
+
+Allow: /blog/
+Allow: /services/
+Allow: /legal/
+Allow: /images/
+Allow: /prototypes/

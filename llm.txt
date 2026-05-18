@@ -1,0 +1,59 @@
+Site Name: Techora
+Website URL: https://techora.in
+Business Type: Local digital services firm focused on website development, automation, branding, and restaurant technology.
+Location: Palakkad, Kerala, India
+
+Business Overview:
+Techora offers practical digital solutions for small businesses, restaurants, shops, creators, and local enterprises in Kerala. The site highlights affordable website design, WhatsApp automation, QR menu systems, logo and branding design, e-commerce setup, and business automation services.
+
+Primary Services:
+- Website design and development for Kerala businesses, responsive sites, e-commerce stores, and web applications.
+- WhatsApp bot automation for customer support, order tracking, and business workflow automation.
+- QR menu solutions for restaurants, hotels, and food stalls with contactless digital ordering.
+- Logo and brand identity design, marketing posters, and social media creatives.
+- Local digital assistance including basic tech setup and practical guidance for business adoption.
+
+Key Service Pages:
+- https://techora.in/services
+- https://techora.in/services/web-design-kerala
+- https://techora.in/services/whatsapp-bot-automation
+- https://techora.in/services/qr-menu-for-restaurants
+- https://techora.in/services/logo-design-kerala
+
+Blog and Content Topics:
+- https://techora.in/blog/techora-blog
+- https://techora.in/blog/hacked-account-recovery-guide
+- https://techora.in/blog/website-hacked-recovery
+- https://techora.in/blog/ecommerce-website-kerala
+- https://techora.in/blog/pos-system-billing-software
+- https://techora.in/blog/kds-pos-system
+- https://techora.in/blog/website-cost-kerala
+- https://techora.in/blog/website-developer-palakkad
+- https://techora.in/blog/why-business-need-website
+- https://techora.in/blog/qr-menu-benefits-kerala
+- https://techora.in/blog/whatsapp-automation-kerala
+
+Target Industries:
+- Small local businesses in Kerala
+- Restaurants and food service providers
+- Retail shops and billing/POS users
+- Creators, students, and startups seeking digital visibility
+- Service providers seeking branding and automation
+
+Site Structure:
+- Root homepage: https://techora.in/
+- Services landing page: https://techora.in/services
+- Blog landing page: https://techora.in/blog/techora-blog
+- Legal pages: https://techora.in/legal/privacy, https://techora.in/legal/terms, https://techora.in/legal/copyright
+- Sitemap: https://techora.in/sitemap.xml
+- Robots: https://techora.in/robot.txt
+
+Contact and Profiles:
+- WhatsApp contact: https://wa.me/919544181503
+- Organization schema lists social profiles: Instagram https://www.instagram.com/techora.inofficial and LinkedIn https://www.linkedin.com/in/techora
+
+Content Signals:
+- Emphasis on local Kerala relevance and affordable digital services.
+- Focus on website design, WhatsApp automation, QR menu systems, and brand identity.
+- Blog coverage includes cybersecurity recovery, e-commerce, POS systems, kitchen display systems, site cost planning, and local developer guidance.
+- Navigation prioritizes Home, Services, Blog, and Contact.
