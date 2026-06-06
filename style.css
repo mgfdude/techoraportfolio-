@@ -1567,10 +1567,8 @@ body.menu-open {
         background: transparent !important;
     }
 
-    /* Move Contact to bottom */
-    .nav-links li:last-child {
-        margin-top: 0;
-        padding-top: 0;
+    /* Contact Button formatting */
+    .nav-links li:has(.btn-nav) {
         border-bottom: none;
     }
 
