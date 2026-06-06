@@ -8,7 +8,7 @@
     <link rel="canonical" href="https://techora.in/about">
     <title>About Techora | Fast Web Design, POS & Automation in Kerala</title>
     <meta name="description"
-        content="Learn about Techora's journey from Cybermate (2024) to Techora (2025). Discover our values, high-performance tech stack, and founders Raihan and Hanan.">
+        content="Learn about Techora, founded by Rythnverse (Founder &amp; CEO), with Hanan as Co-Founder. Discover our journey from Cybermate (2024) to Techora (2025), our values and tech stack.">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -28,31 +28,42 @@
     {
       "@context": "https://schema.org",
       "@type": "AboutPage",
+      "@id": "https://techora.in/about",
+      "url": "https://techora.in/about",
+      "name": "About Techora | Founder Rythnverse & Co-Founder Hanan",
+      "description": "Learn about Techora, founded by Rythnverse (Founder & CEO), with Hanan serving as Co-Founder. Discover our journey from Cybermate to Techora.",
       "mainEntity": {
-        "@type": "Organization",
-        "name": "Techora",
-        "url": "https://techora.in",
-        "logo": "https://techora.in/images/logo/main_logo.png",
-        "email": "techora2008@gmail.com",
-        "telephone": "+919544181503",
-        "sameAs": [
-          "https://www.instagram.com/techora.inofficial",
-          "https://www.linkedin.com/in/techora"
-        ],
-        "foundingDate": "2024",
-        "founder": [
-          {
-            "@type": "Person",
-            "name": "Raihan",
-            "alternateName": "ryhnverse",
-            "sameAs": "https://www.instagram.com/ryhnverse"
-          },
-          {
-            "@type": "Person",
-            "name": "Hanan"
-          }
-        ]
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://techora.in/#organization",
+      "name": "Techora",
+      "url": "https://techora.in",
+      "logo": "https://techora.in/images/logo/main_logo.png",
+      "email": "techora2008@gmail.com",
+      "telephone": "+919544181503",
+      "foundingDate": "2024",
+      "description": "Techora is a digital services company founded by Rythnverse, offering website design, WhatsApp automation, QR menus, and POS solutions in Kerala.",
+      "sameAs": [
+        "https://www.instagram.com/techora.inofficial",
+        "https://www.linkedin.com/in/techora"
+      ],
+      "founder": {
+        "@type": "Person",
+        "@id": "https://techora.in/founder#rythnverse",
+        "name": "Rythnverse",
+        "jobTitle": "Founder & CEO",
+        "worksFor": { "@id": "https://techora.in/#organization" },
+        "sameAs": "https://www.instagram.com/ryhnverse"
+      },
+      "member": {
+        "@type": "Person",
+        "@id": "https://techora.in/founder#hanan",
+        "name": "Hanan",
+        "jobTitle": "Co-Founder",
+        "worksFor": { "@id": "https://techora.in/#organization" },
+        "sameAs": "https://www.instagram.com/h_anan._"
       }
+    }
     }
     </script>
 </head>
@@ -150,16 +161,18 @@
 
                 <div class="founders-card glass-card" style="padding: 40px; border-radius: 20px; position: relative;">
                     <div class="card-glow" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 10% 20%, rgba(131, 56, 236, 0.15) 0%, transparent 50%); pointer-events: none; border-radius: 20px;"></div>
-                    <h3 style="font-size: 1.8rem; margin-bottom: 25px; font-family: 'Outfit', sans-serif; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 15px;">Our Founders</h3>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 25px; font-family: 'Outfit', sans-serif; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 15px;">Company Leadership</h3>
                     
                     <div class="founder-item" style="display: flex; gap: 20px; align-items: center; margin-bottom: 35px;">
                         <div class="founder-avatar" style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-1), var(--accent-2)); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: bold; color: #fff; font-family: 'Outfit', sans-serif;">
                             R
                         </div>
                         <div class="founder-details">
-                            <h4 style="font-size: 1.2rem; margin-bottom: 5px; font-family: 'Outfit', sans-serif;">Raihan (ryhnverse)</h4>
-                            <p style="color: var(--accent-1); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Founder & CEO</p>
-                            <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin-bottom: 5px;">Lead architect directing core technology strategies, Python automation, and custom chatbot integrations.</p>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 5px; font-family: 'Outfit', sans-serif;">Meet the Founder</h4>
+                            <p style="color: var(--accent-1); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Founder & CEO: Rythnverse</p>
+                            <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin-bottom: 5px;">Rythnverse is the Founder & CEO of Techora and leads the company's vision, development, and innovation initiatives.</p>
+                            <a href="/founder" style="color: var(--primary-light); font-size: 0.85rem; text-decoration: underline; margin-bottom: 5px; display: inline-block;">Read Founder Story</a>
+                            <br>
                             <a href="https://www.instagram.com/ryhnverse" target="_blank" style="color: var(--accent-2); font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;"><i class="fa-brands fa-instagram"></i> @ryhnverse</a>
                         </div>
                     </div>
@@ -169,9 +182,9 @@
                             H
                         </div>
                         <div class="founder-details">
-                            <h4 style="font-size: 1.2rem; margin-bottom: 5px; font-family: 'Outfit', sans-serif;">Hanan</h4>
-                            <p style="color: var(--accent-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Co-Founder & UI/UX Consultant</p>
-                            <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin-bottom: 5px;">Front-end lead specializing in designing visually stunning, highly conversion-focused user interfaces.</p>
+                            <h4 style="font-size: 1.2rem; margin-bottom: 5px; font-family: 'Outfit', sans-serif;">Co-Founder</h4>
+                            <p style="color: var(--accent-2); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Co-Founder: Hanan</p>
+                            <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.85rem; margin-bottom: 5px;">Hanan serves as Co-Founder and supports business growth, operations, and customer relationships.</p>
                             <a href="https://www.instagram.com/h_anan._" target="_blank" style="color: var(--accent-2); font-size: 0.8rem; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;"><i class="fa-brands fa-instagram"></i> @h_anan._</a>
                         </div>
                     </div>
